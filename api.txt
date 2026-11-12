@@ -1,0 +1,1830 @@
+# RIVALRY 90 – PHASE 21: INTERNAL API INTEGRATION
+
+## ROLE
+
+Act as a Senior API Architect, Full-Stack JavaScript Engineer, Backend Integration Specialist, PostgreSQL Developer and Enterprise Application Architect.
+
+You are working on my existing project:
+
+**Project:** RIVALRY 90  
+**Current Phase:** 21 – Internal API Integration  
+**Frontend:** Next.js + React  
+**Backend:** Next.js Route Handlers  
+**Language:** JavaScript + JSX ONLY  
+**Database:** Existing PostgreSQL provider  
+**Authentication:** Existing authentication system  
+**Database Implementation:** Phase 19  
+**Database Operations and Security:** Phase 20
+
+Your mission is to connect every existing RIVALRY 90 application module through a consistent, secure and maintainable internal API system.
+
+Do not just create API endpoint files. Implement working endpoints, connect frontend components, integrate database operations, validate requests, enforce authorization and test the complete request-response lifecycle.
+
+---
+
+# 1. INSPECT THE COMPLETE PROJECT
+
+Before implementation:
+
+1. Inspect the complete project structure.
+2. Read documentation from Phases 01–20.
+3. Inspect the existing Next.js App Router architecture.
+4. Inspect all API routes.
+5. Inspect database connection utilities.
+6. Inspect database repositories and services.
+7. Inspect authentication and session management.
+8. Inspect role-based permissions.
+9. Inspect user profile functionality.
+10. Inspect player and team management.
+11. Inspect game modes and squad builder.
+12. Inspect events, news and media.
+13. Inspect admin dashboard.
+14. Inspect validation utilities.
+15. Inspect error handling.
+16. Inspect logging.
+17. Inspect frontend data-fetching logic.
+18. Identify mock data still being used.
+19. Identify duplicated API functionality.
+20. Identify incomplete integrations.
+
+### Strict rules
+
+- Preserve all completed functionality from Phases 01–20.
+- Do not rebuild the application.
+- Do not duplicate API endpoints unnecessarily.
+- Do not replace the existing database.
+- Do not replace authentication.
+- Use JavaScript and JSX only.
+- Never create `.ts` or `.tsx` files.
+- Never expose database credentials.
+- Never expose private environment variables.
+- Never trust frontend-only authorization.
+- Do not start Phase 22 automatically.
+
+---
+
+# 2. INTERNAL API ARCHITECTURE
+
+Create a consistent API architecture using the existing Next.js App Router.
+
+Suggested structure:
+
+`src/app/api/`
+
+- auth/
+- users/
+- profile/
+- players/
+- teams/
+- game-modes/
+- squads/
+- formations/
+- events/
+- news/
+- media/
+- admin/
+- health/
+
+Suggested supporting structure:
+
+`src/lib/api/`
+
+- response.js
+- errors.js
+- validation.js
+- pagination.js
+- permissions.js
+- request.js
+
+`src/services/`
+
+- userService.js
+- profileService.js
+- playerService.js
+- teamService.js
+- squadService.js
+- eventService.js
+- newsService.js
+- mediaService.js
+- adminService.js
+
+`src/repositories/`
+
+- userRepository.js
+- playerRepository.js
+- teamRepository.js
+- squadRepository.js
+- eventRepository.js
+- newsRepository.js
+- mediaRepository.js
+
+These are suggested locations. Follow the actual project architecture and avoid unnecessary duplication.
+
+### Architecture principles
+
+- Route handlers manage HTTP requests and responses.
+- Services manage business logic.
+- Repositories manage database access.
+- Validation utilities validate incoming data.
+- Authentication utilities identify the requester.
+- Permission utilities enforce authorization.
+- Error utilities standardize failures.
+
+Do not put all application logic inside route handlers.
+
+---
+
+# 3. API RESPONSE STANDARDIZATION
+
+Create one consistent response format.
+
+Successful response example:
+
+{
+  "success": true,
+  "message": "Request completed successfully",
+  "data": {},
+  "meta": null
+}
+
+Error response example:
+
+{
+  "success": false,
+  "message": "Unable to complete the request",
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "details": []
+  }
+}
+
+### Requirements
+
+- Consistent response structure.
+- Appropriate HTTP status codes.
+- Safe error messages.
+- Validation error details.
+- No raw SQL errors.
+- No stack traces sent to ordinary users.
+- No sensitive information in responses.
+
+Use the same response convention across all internal API modules.
+
+---
+
+# 4. AUTHENTICATION API INTEGRATION
+
+Integrate the existing Phase 12 authentication system.
+
+Support the existing provider's available operations:
+
+- Registration.
+- Login.
+- Logout.
+- Current session.
+- Current user.
+- Password reset.
+- Email verification.
+- Session validation.
+
+Do not build a second authentication system.
+
+### Requirements
+
+- Validate sessions server-side.
+- Protect private endpoints.
+- Handle expired sessions.
+- Handle unauthenticated requests.
+- Apply secure cookie and token handling according to the provider.
+- Avoid exposing authentication secrets.
+- Avoid sending unnecessary private user information.
+
+If authentication endpoints are already provided by the authentication provider, reuse them instead of creating duplicate implementations.
+
+---
+
+# 5. USER PROFILE API
+
+Integrate the Phase 13 user profile system.
+
+Suggested endpoints:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/profile` | Get current profile |
+| PATCH | `/api/profile` | Update own profile |
+| GET | `/api/users/[username]` | Get permitted public profile |
+| GET | `/api/profile/settings` | Get user settings |
+| PATCH | `/api/profile/settings` | Update settings |
+| GET | `/api/profile/privacy` | Get privacy preferences |
+| PATCH | `/api/profile/privacy` | Update privacy preferences |
+
+### Requirements
+
+- Profile retrieval.
+- Profile updates.
+- Avatar metadata.
+- User preferences.
+- Privacy settings.
+- Public profile visibility.
+- Account ownership validation.
+
+Users must only update their own private profile data unless an authorized administrative operation is used.
+
+---
+
+# 6. PLAYER API INTEGRATION
+
+Integrate Phase 14 player functionality.
+
+Suggested endpoints:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/players` | List players |
+| GET | `/api/players/[id]` | Player details |
+| GET | `/api/players/search` | Search players |
+| GET | `/api/players/featured` | Featured players |
+| POST | `/api/players` | Create player |
+| PATCH | `/api/players/[id]` | Update player |
+| DELETE | `/api/players/[id]` | Delete player |
+
+### Requirements
+
+- Database-backed player listing.
+- Player details.
+- Search.
+- Position filtering.
+- Team filtering.
+- Rating filtering.
+- Sorting.
+- Pagination.
+- Featured players.
+- Authorized player creation and editing.
+
+Public users must not access unpublished or restricted records.
+
+Do not use fake player records when real database records are available.
+
+---
+
+# 7. TEAM API INTEGRATION
+
+Integrate Phase 14 team functionality.
+
+Suggested endpoints:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/teams` | List teams |
+| GET | `/api/teams/[id]` | Team details |
+| GET | `/api/teams/[id]/players` | Team roster |
+| GET | `/api/teams/search` | Search teams |
+| POST | `/api/teams` | Create team |
+| PATCH | `/api/teams/[id]` | Update team |
+| DELETE | `/api/teams/[id]` | Delete team |
+
+### Requirements
+
+- Team listing.
+- Team detail retrieval.
+- Club and national team filtering.
+- Team roster retrieval.
+- Player relationships.
+- Search.
+- Pagination.
+- Authorized CRUD operations.
+
+Preserve existing player-team relationships.
+
+---
+
+# 8. GAME MODE API INTEGRATION
+
+Integrate the Phase 15 game mode catalogue.
+
+Suggested endpoints:
+
+- `GET /api/game-modes`
+- `GET /api/game-modes/[slug]`
+- `GET /api/game-modes/categories`
+
+### Requirements
+
+- Retrieve game mode catalogue.
+- Filter by category.
+- Retrieve game mode details.
+- Display availability status.
+- Display mode information.
+
+Do not claim that a game mode is playable unless the corresponding game functionality exists.
+
+---
+
+# 9. SQUAD BUILDER API INTEGRATION
+
+Connect the frontend squad builder with real database persistence.
+
+Suggested endpoints:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/squads` | List current user's squads |
+| POST | `/api/squads` | Create squad |
+| GET | `/api/squads/[id]` | Get squad |
+| PATCH | `/api/squads/[id]` | Update squad |
+| DELETE | `/api/squads/[id]` | Delete squad |
+| POST | `/api/squads/[id]/players` | Assign player |
+| DELETE | `/api/squads/[id]/players/[playerId]` | Remove player |
+| PATCH | `/api/squads/[id]/formation` | Change formation |
+| GET | `/api/formations` | List formations |
+
+### Requirements
+
+- Create squad.
+- Rename squad.
+- Save formation.
+- Assign players.
+- Remove players.
+- Set captain.
+- Manage substitutes.
+- Retrieve saved squads.
+- Update squad details.
+- Delete squads.
+- Calculate squad rating.
+
+### Security and validation
+
+- Require authentication.
+- Verify squad ownership.
+- Prevent duplicate player assignments.
+- Validate formations.
+- Enforce 11 starting players maximum.
+- Enforce substitute limits.
+- Prevent multiple captains.
+- Use transactions for multi-step squad changes.
+- Prevent users from modifying other users' squads.
+
+The squad builder must save actual database changes, not just React state.
+
+---
+
+# 10. EVENTS API INTEGRATION
+
+Connect Phase 16 events.
+
+Suggested endpoints:
+
+- `GET /api/events`
+- `GET /api/events/[slug]`
+- `GET /api/events/categories`
+- `POST /api/events`
+- `PATCH /api/events/[id]`
+- `DELETE /api/events/[id]`
+
+If registration is implemented:
+
+- `POST /api/events/[id]/register`
+- `DELETE /api/events/[id]/register`
+- `GET /api/events/[id]/registrations`
+
+### Requirements
+
+- Published event retrieval.
+- Event details.
+- Search.
+- Filtering.
+- Sorting.
+- Pagination.
+- Event status.
+- Registration where supported.
+- Authorized content management.
+
+Prevent duplicate registrations.
+
+Do not expose drafts to public users.
+
+---
+
+# 11. NEWS API INTEGRATION
+
+Connect Phase 16 news.
+
+Suggested endpoints:
+
+- `GET /api/news`
+- `GET /api/news/[slug]`
+- `GET /api/news/categories`
+- `GET /api/news/featured`
+- `POST /api/news`
+- `PATCH /api/news/[id]`
+- `DELETE /api/news/[id]`
+
+### Requirements
+
+- Published article retrieval.
+- Article details.
+- Search.
+- Category filtering.
+- Tags.
+- Pagination.
+- Featured content.
+- Author information.
+- SEO metadata.
+- Authorized publishing operations.
+
+Public endpoints must only return published content.
+
+Draft and scheduled articles must remain private until their publication conditions are satisfied.
+
+---
+
+# 12. MEDIA API INTEGRATION
+
+Connect Phase 16 media.
+
+Suggested endpoints:
+
+- `GET /api/media`
+- `GET /api/media/[id]`
+- `GET /api/media/categories`
+- `GET /api/media/featured`
+- `POST /api/media`
+- `PATCH /api/media/[id]`
+- `DELETE /api/media/[id]`
+
+### Requirements
+
+- Media listing.
+- Media details.
+- Image gallery.
+- Video metadata.
+- Category filtering.
+- Featured media.
+- Pagination.
+- Secure media upload integration where configured.
+- Storage metadata.
+- Authorized publishing and deletion.
+
+Do not store large binary media files in PostgreSQL.
+
+Reuse the existing storage provider.
+
+---
+
+# 13. ADMIN API INTEGRATION
+
+Connect the Phase 17 administration dashboard.
+
+Suggested endpoints:
+
+### Dashboard
+
+- `GET /api/admin/dashboard`
+- `GET /api/admin/analytics`
+
+### Users
+
+- `GET /api/admin/users`
+- `GET /api/admin/users/[id]`
+- `PATCH /api/admin/users/[id]`
+
+### Roles
+
+- `GET /api/admin/roles`
+- `POST /api/admin/roles`
+- `PATCH /api/admin/roles/[id]`
+
+### Audit
+
+- `GET /api/admin/audit-logs`
+
+### Security
+
+- `GET /api/admin/security`
+
+### Settings
+
+- `GET /api/admin/settings`
+- `PATCH /api/admin/settings`
+
+### Requirements
+
+- Enforce existing roles and permissions.
+- Protect every admin route.
+- Apply server-side authorization.
+- Use pagination for large records.
+- Record sensitive operations.
+- Avoid exposing private user data.
+- Reuse existing admin functionality.
+
+Do not create duplicate role or permission systems.
+
+---
+
+# 14. API VALIDATION SYSTEM
+
+Create reusable request validation.
+
+Validate:
+
+- Request body.
+- URL parameters.
+- Query parameters.
+- IDs.
+- Slugs.
+- Pagination values.
+- Sorting fields.
+- Filter values.
+- Dates.
+- User input.
+- File metadata.
+
+Use the existing validation library if available.
+
+If none exists, select a suitable maintained JavaScript validation library after inspecting the project.
+
+### Validation requirements
+
+- Reject malformed requests.
+- Reject invalid IDs.
+- Reject unsupported sorting fields.
+- Restrict pagination limits.
+- Validate dates.
+- Validate enum/status values.
+- Validate content fields.
+- Prevent unexpected object properties where appropriate.
+
+Never trust data coming from the browser.
+
+---
+
+# 15. PAGINATION, FILTERING AND SEARCH
+
+Create a reusable pagination system.
+
+Suggested query parameters:
+
+`?page=1&limit=20&sortBy=createdAt&order=desc`
+
+### Requirements
+
+- Default page.
+- Maximum page size.
+- Total record count where needed.
+- Current page.
+- Total pages.
+- Sorting.
+- Filtering.
+- Search.
+- Consistent metadata.
+
+Example response metadata:
+
+{
+  "page": 1,
+  "limit": 20,
+  "total": 100,
+  "totalPages": 5
+}
+
+Use database queries for filtering and pagination.
+
+Do not retrieve thousands of records and filter everything in React.
+
+---
+
+# 16. FRONTEND API CLIENT
+
+Create or improve a centralized frontend API client.
+
+Suggested location:
+
+`src/lib/api/`
+
+Possible files:
+
+- client.js
+- endpoints.js
+- errors.js
+- query.js
+
+### Requirements
+
+- Consistent API requests.
+- JSON serialization.
+- Error handling.
+- Authentication-aware requests.
+- Request cancellation where useful.
+- Response parsing.
+- Loading states.
+- No secret credentials in browser code.
+
+Use the existing fetching architecture if already configured.
+
+Avoid unnecessary data-fetching libraries.
+
+If React Query or another data-fetching tool already exists, reuse it.
+
+---
+
+# 17. CONNECT FRONTEND MODULES
+
+Replace temporary mock integrations where appropriate.
+
+Connect:
+
+- Homepage featured players.
+- Homepage featured teams.
+- Homepage game modes.
+- Homepage events.
+- Homepage latest news.
+- Homepage media showcase.
+- Players listing.
+- Player details.
+- Teams listing.
+- Team details.
+- Squad builder.
+- User profile.
+- Events pages.
+- News pages.
+- Media gallery.
+- Admin dashboard.
+
+### Requirements
+
+- Real database-backed content.
+- Loading states.
+- Empty states.
+- Error states.
+- Retry behaviour where appropriate.
+- Pagination.
+- Correct cache invalidation.
+- No fake success messages.
+
+Preserve the existing visual design.
+
+Do not remove demo fallback content without providing a clear empty-state strategy.
+
+---
+
+# 18. API DOCUMENTATION AND OPENAPI
+
+Create complete internal API documentation.
+
+Create:
+
+`docs/INTERNAL_API_ARCHITECTURE.md`
+
+`docs/INTERNAL_API_REFERENCE.md`
+
+`docs/API_AUTHENTICATION_GUIDE.md`
+
+`docs/API_AUTHORIZATION_GUIDE.md`
+
+`docs/API_ERROR_HANDLING.md`
+
+`docs/API_VALIDATION_GUIDE.md`
+
+`docs/API_PAGINATION_AND_FILTERING.md`
+
+`docs/API_FRONTEND_INTEGRATION.md`
+
+`docs/API_TESTING_REPORT.md`
+
+`docs/DEVELOPMENT_ROADMAP.md`
+
+`docs/PROJECT_TASK_TRACKER.md`
+
+If appropriate, create an OpenAPI specification:
+
+`docs/openapi.yaml`
+
+Document:
+
+- Endpoint.
+- HTTP method.
+- Parameters.
+- Request body.
+- Response format.
+- Authentication requirements.
+- Permissions.
+- Error responses.
+- Pagination.
+- Validation rules.
+
+Keep the documentation synchronized with actual implemented endpoints.
+
+---
+
+# 19. API TESTING
+
+Test all internal API modules.
+
+### Authentication tests
+
+- Valid session.
+- Expired session.
+- Missing session.
+- Unauthorized access.
+
+### Profile tests
+
+- Get own profile.
+- Update own profile.
+- Attempt to update another user's private profile.
+- Invalid profile data.
+
+### Player and team tests
+
+- List.
+- Search.
+- Filter.
+- Detail.
+- Pagination.
+- Unauthorized CRUD operations.
+
+### Squad tests
+
+- Create.
+- Retrieve.
+- Update.
+- Assign player.
+- Remove player.
+- Change formation.
+- Set captain.
+- Delete.
+- Unauthorized squad modification.
+- Duplicate player rejection.
+
+### Events and news tests
+
+- List published content.
+- Retrieve details.
+- Search.
+- Filter.
+- Draft visibility.
+- Unauthorized publishing.
+
+### Media tests
+
+- List media.
+- Retrieve media.
+- Filter categories.
+- Upload validation.
+- Unauthorized deletion.
+
+### Admin tests
+
+- Role restrictions.
+- Permission checks.
+- User management.
+- Audit log access.
+- Security endpoint access.
+
+### Technical tests
+
+- HTTP status codes.
+- Request validation.
+- Response format.
+- Error handling.
+- Database persistence.
+- Rate limits where configured.
+
+Use a development or staging database.
+
+Do not run destructive tests on production data.
+
+---
+
+# 20. PERFORMANCE AND SECURITY
+
+Requirements:
+
+- Avoid N+1 queries.
+- Use database pagination.
+- Validate every request.
+- Enforce authorization server-side.
+- Apply rate limiting where appropriate.
+- Use parameterized database queries.
+- Avoid sensitive data exposure.
+- Prevent IDOR vulnerabilities.
+- Prevent privilege escalation.
+- Use safe caching.
+- Protect private responses from public caching.
+- Prevent accidental draft exposure.
+- Use correct HTTP methods.
+- Use appropriate status codes.
+
+Do not cache private user or admin responses in shared public caches.
+
+---
+
+# 21. FINAL INTEGRATION TEST
+
+Test a complete end-to-end user journey:
+
+1. User visits RIVALRY 90.
+2. User registers or logs in through the existing authentication provider.
+3. User opens their profile.
+4. User views football players.
+5. User views teams.
+6. User creates a squad.
+7. User selects a formation.
+8. User assigns players.
+9. User saves the squad.
+10. User refreshes the page.
+11. The saved squad is retrieved from PostgreSQL.
+12. User browses events.
+13. User opens a news article.
+14. User browses media.
+15. Authorized admin updates content.
+16. Public pages reflect the published update.
+
+Verify actual data persistence and authorization at each step.
+
+If any step depends on unavailable credentials or provider configuration, document the blocker.
+
+---
+
+# 22. FINAL ACCEPTANCE CRITERIA
+
+- [ ] Unified internal API architecture.
+- [ ] Standard response format.
+- [ ] Authentication integration.
+- [ ] Profile API integration.
+- [ ] Player API integration.
+- [ ] Team API integration.
+- [ ] Game mode API integration.
+- [ ] Squad API integration.
+- [ ] Events API integration.
+- [ ] News API integration.
+- [ ] Media API integration.
+- [ ] Admin API integration.
+- [ ] Request validation.
+- [ ] Pagination and filtering.
+- [ ] Frontend API client.
+- [ ] Real database persistence.
+- [ ] Server-side authorization.
+- [ ] API documentation.
+- [ ] OpenAPI specification where appropriate.
+- [ ] API tests.
+- [ ] End-to-end integration test.
+- [ ] ESLint and production build verified.
+
+---
+
+# 23. STRICT PHASE BOUNDARY
+
+This is Phase 21 – Internal API Integration.
+
+Do not implement external third-party API integrations in this phase.
+
+The next phase is:
+
+**Phase 22 – External API Integration.**
+
+Phase 22 will evaluate and integrate appropriate external services such as:
+
+- Football data APIs.
+- AI model APIs.
+- Media services.
+- Analytics services.
+- Email services.
+- Other approved third-party providers.
+
+Do not automatically start Phase 22.
+
+Do not add paid APIs without approval.
+
+Do not hardcode API keys.
+
+Do not claim an external integration exists when it is only a placeholder.
+
+---
+
+# 24. FINAL REPORT
+
+After implementation, provide:
+
+1. Phase 21 completion status.
+2. Internal API architecture.
+3. Files created.
+4. Files modified.
+5. API endpoint inventory.
+6. Authentication integration.
+7. Profile integration.
+8. Player and team integration.
+9. Squad builder integration.
+10. Events and news integration.
+11. Media integration.
+12. Admin integration.
+13. Database persistence results.
+14. Validation implementation.
+15. Authorization implementation.
+16. Pagination and filtering.
+17. Frontend integration.
+18. API testing results.
+19. End-to-end testing results.
+20. ESLint results.
+21. Production build result.
+22. Known issues and configuration requirements.
+
+Clearly distinguish working endpoints from placeholders and incomplete integrations.
+
+# RIVALRY 90 – PHASE 22: EXTERNAL API INTEGRATION
+
+## ROLE
+
+Act as a Senior API Integration Architect, Full-Stack JavaScript Developer, AI Integration Engineer, Football Data Engineer and SaaS Platform Architect.
+
+You are working on my existing project:
+
+**Project:** RIVALRY 90  
+**Current Phase:** 22 – External API Integration  
+**Frontend:** Next.js + React  
+**Backend:** Next.js Route Handlers  
+**Language:** JavaScript + JSX ONLY  
+**Database:** Existing PostgreSQL database  
+**Internal APIs:** Phase 21 completed  
+**Authentication:** Existing authentication provider  
+**Deployment target:** Vercel or the existing deployment platform
+
+Your mission is to integrate useful external services into RIVALRY 90 and create a reliable architecture for managing third-party APIs.
+
+Do not simply add API keys or create placeholder integrations. Inspect available providers, verify their current documentation, implement supported functionality and test actual API responses.
+
+---
+
+# 1. INSPECT THE EXISTING PROJECT
+
+Before implementation:
+
+1. Inspect the complete project structure.
+2. Read all documentation from Phases 01–21.
+3. Inspect the existing internal API architecture.
+4. Inspect authentication and authorization.
+5. Inspect PostgreSQL database architecture.
+6. Inspect environment variables.
+7. Inspect existing API client utilities.
+8. Inspect error-handling architecture.
+9. Inspect admin dashboard.
+10. Inspect frontend data-fetching architecture.
+11. Inspect caching and rate-limiting systems.
+12. Identify existing external integrations.
+13. Identify missing external services.
+14. Identify available API credentials.
+15. Identify services that require paid subscriptions.
+
+Do not replace working integrations.
+
+Do not expose API keys in frontend code.
+
+Do not assume that an API is free simply because it offers a free registration.
+
+---
+
+# 2. EXTERNAL API ARCHITECTURE
+
+Create a centralized external API integration architecture.
+
+Suggested structure:
+
+`src/lib/integrations/`
+
+- index.js
+- config.js
+- integrationRegistry.js
+- integrationStatus.js
+- integrationErrors.js
+- integrationLogger.js
+
+`src/services/external/`
+
+- footballDataService.js
+- aiService.js
+- imageService.js
+- videoService.js
+- emailService.js
+- analyticsService.js
+
+`src/lib/integrations/providers/`
+
+- football/
+- ai/
+- media/
+- email/
+- analytics/
+
+Follow the existing project architecture rather than creating unnecessary duplicate folders.
+
+### Architecture requirements
+
+- Provider-independent service interfaces.
+- Secure server-side API calls.
+- Environment-based configuration.
+- Request timeout.
+- Retry strategy for transient failures.
+- Rate-limit handling.
+- Response validation.
+- Error normalization.
+- Logging.
+- Caching where appropriate.
+- Provider health checks.
+- Graceful fallback.
+- Clear integration status.
+
+Never expose private API keys to the browser.
+
+Never put secret keys in `NEXT_PUBLIC_` environment variables.
+
+---
+
+# 3. FOOTBALL DATA API INTEGRATION
+
+Integrate a suitable football data provider.
+
+First research and compare providers using their official documentation.
+
+Evaluate providers such as:
+
+- API-Football.
+- Sportmonks.
+- football-data.org.
+- Other suitable football statistics providers.
+
+Official websites for research:
+
+- https://www.api-football.com/
+- https://www.sportmonks.com/
+- https://www.football-data.org/
+
+### Provider comparison
+
+Compare:
+
+- Free plan availability.
+- API request limits.
+- League coverage.
+- Team information.
+- Player information.
+- Fixtures.
+- Match results.
+- Live match information.
+- Standings.
+- Statistics.
+- Historical data.
+- Commercial usage restrictions.
+- Pricing.
+- Attribution requirements.
+
+Choose one primary provider based on actual project requirements and available credentials.
+
+Do not integrate every provider unnecessarily.
+
+Do not purchase subscriptions without my approval.
+
+### Football data features
+
+Where supported by the selected provider, integrate:
+
+- Football leagues.
+- Competitions.
+- Clubs.
+- National teams.
+- Players.
+- Fixtures.
+- Match results.
+- League standings.
+- Match statistics.
+- Team statistics.
+- Player statistics.
+- Live scores.
+- Upcoming matches.
+- Recent matches.
+
+### Frontend integration
+
+Create or connect suitable sections for:
+
+- Football live centre.
+- Upcoming fixtures.
+- Recent results.
+- League standings.
+- Team statistics.
+- Player statistics.
+- Competition details.
+
+Do not show fake live scores.
+
+Clearly label demo data separately from live external data.
+
+If live data is unavailable, display a useful empty state.
+
+### Important data rule
+
+Keep the RIVALRY 90 fictional game universe separate from real-world football data.
+
+External football data must not silently overwrite fictional player ratings, teams, squads or game-universe records.
+
+Use separate source identifiers and mappings.
+
+---
+
+# 4. AI INTEGRATION
+
+Integrate an external AI provider for football-related intelligence.
+
+First inspect available providers and their official API documentation.
+
+Evaluate options such as:
+
+- OpenAI API.
+- Google Gemini API.
+- Other suitable AI providers.
+
+Official documentation:
+
+- https://platform.openai.com/docs/
+- https://ai.google.dev/gemini-api/docs
+
+Select a provider only after checking:
+
+- Current API availability.
+- Pricing.
+- Free usage, if offered.
+- Rate limits.
+- Supported models.
+- Commercial usage terms.
+- API security requirements.
+
+Do not assume free usage is permanent.
+
+Do not expose model API keys.
+
+Do not hardcode model names throughout the application.
+
+Keep provider and model settings configurable on the server.
+
+### AI features for RIVALRY 90
+
+Implement an AI service architecture that can support:
+
+**A. AI Football Assistant**
+
+- Answer football-related questions.
+- Explain football positions.
+- Explain player attributes.
+- Explain formations.
+- Explain tactical concepts.
+
+**B. AI Squad Analyst**
+
+- Analyse a user's saved squad.
+- Identify strengths and weaknesses.
+- Suggest formation adjustments.
+- Explain squad balance.
+- Recommend improvements using available player records.
+
+**C. AI Tactical Assistant**
+
+- Explain attacking formations.
+- Explain defensive formations.
+- Suggest tactical approaches.
+- Explain player roles.
+- Compare tactical setups.
+
+**D. AI Player Analyst**
+
+- Explain player attributes.
+- Compare two or more players.
+- Generate performance summaries from supplied data.
+- Explain player strengths and weaknesses.
+
+**E. AI Match Analyst**
+
+If real match statistics are available:
+
+- Summarise match statistics.
+- Explain team performance.
+- Identify statistical trends.
+- Generate a match report.
+
+Do not claim to predict match outcomes accurately.
+
+Clearly label AI-generated insights as suggestions, not guaranteed facts.
+
+### AI integration security
+
+- Authenticate AI requests.
+- Validate prompt input.
+- Apply rate limits.
+- Restrict request size.
+- Handle provider errors.
+- Avoid sending unnecessary personal information.
+- Protect against prompt injection in retrieved external content.
+- Avoid exposing internal system instructions.
+- Monitor token usage and costs.
+- Add reasonable usage limits.
+
+Do not store sensitive user conversations unnecessarily.
+
+---
+
+# 5. AI SQUAD ANALYSIS IMPLEMENTATION
+
+Connect the existing squad builder to the AI service.
+
+Suggested endpoint:
+
+`POST /api/ai/squad-analysis`
+
+Input should contain the user's selected squad or a permitted squad ID.
+
+The backend must:
+
+1. Authenticate the user.
+2. Verify squad ownership.
+3. Retrieve squad data from PostgreSQL.
+4. Retrieve the relevant player attributes.
+5. Validate the data.
+6. Send only relevant information to the AI provider.
+7. Receive the analysis.
+8. Validate the response.
+9. Return a structured response.
+
+Suggested analysis format:
+
+{
+  "overallSummary": "",
+  "strengths": [],
+  "weaknesses": [],
+  "formationAnalysis": "",
+  "defensiveAnalysis": "",
+  "attackingAnalysis": "",
+  "suggestions": [],
+  "limitations": []
+}
+
+This is an illustrative response contract. Adapt it to the existing validation and API response conventions.
+
+Do not let AI modify a saved squad automatically.
+
+The user must choose whether to apply any recommendation.
+
+---
+
+# 6. MEDIA AND IMAGE API INTEGRATION
+
+Research useful media services.
+
+Evaluate:
+
+- Cloudinary.
+- Existing configured storage provider.
+- Other suitable image hosting providers.
+
+Official website:
+
+https://cloudinary.com/
+
+### Requirements
+
+- Image upload.
+- Image optimization.
+- Responsive image delivery.
+- Image transformations.
+- Thumbnail generation.
+- Asset metadata.
+- Secure upload.
+- File-size validation.
+- File-type validation.
+- Deletion authorization.
+
+Reuse the existing media storage provider if it already works.
+
+Do not introduce another provider without a clear benefit.
+
+### Asset licensing
+
+Use only:
+
+- Original project assets.
+- Properly licensed stock assets.
+- Public-domain assets.
+- Assets explicitly authorized for use.
+
+Do not scrape copyrighted football game images, official logos, club badges, player photographs or commercial artwork.
+
+Document asset attribution and licensing requirements.
+
+---
+
+# 7. VIDEO INTEGRATION
+
+Research suitable video hosting or embedding services.
+
+Possible services:
+
+- YouTube Data API.
+- Existing approved video provider.
+
+Official documentation:
+
+https://developers.google.com/youtube/v3
+
+### Requirements
+
+- Video metadata.
+- Video title.
+- Thumbnail.
+- Channel information.
+- Video category.
+- Safe embedding.
+- External video links.
+- API quota handling.
+
+Use only videos that can legally be embedded or used.
+
+Do not download or redistribute copyrighted videos.
+
+If no API credentials exist, provide an honest manual-link or approved embed fallback.
+
+---
+
+# 8. EMAIL SERVICE INTEGRATION
+
+Inspect the existing authentication and email architecture.
+
+Evaluate suitable providers such as:
+
+- Resend.
+- SendGrid.
+- Existing configured email provider.
+
+Official website:
+
+https://resend.com/
+
+### Potential email functionality
+
+- Account verification.
+- Password reset.
+- Welcome email.
+- Event registration confirmation.
+- Important account notifications.
+- Admin notifications.
+
+### Requirements
+
+- Server-side email sending.
+- Verified sender configuration.
+- Secure API key storage.
+- Email templates.
+- Input validation.
+- Error handling.
+- Delivery status where supported.
+- Rate limiting.
+- No duplicate messages caused by retries.
+
+Do not send real emails during testing unless explicitly configured for a test environment.
+
+Do not replace emails already managed by the authentication provider.
+
+---
+
+# 9. ANALYTICS INTEGRATION
+
+Research appropriate website analytics providers.
+
+Possible options:
+
+- Google Analytics 4.
+- Vercel Analytics.
+- Existing analytics provider.
+
+### Track useful website events
+
+- Page views.
+- Navigation interactions.
+- Game mode page visits.
+- Player profile views.
+- Team profile views.
+- Squad creation.
+- Squad updates.
+- Event page visits.
+- News article views.
+- User registration where appropriate.
+
+### Requirements
+
+- Respect applicable privacy requirements.
+- Avoid collecting unnecessary personal information.
+- Avoid sending private squad contents to analytics.
+- Prevent duplicate event tracking.
+- Configure environment-specific tracking.
+- Document consent and cookie requirements where applicable.
+
+Do not introduce intrusive tracking.
+
+---
+
+# 10. EXTERNAL API ADMIN DASHBOARD
+
+Integrate external service monitoring into the existing Phase 17 admin dashboard.
+
+Create or extend an integrations management page.
+
+Suggested route:
+
+`/admin/integrations`
+
+Display:
+
+- Provider name.
+- Integration category.
+- Configuration status.
+- Connection status.
+- Last successful check.
+- Last error.
+- Usage information where available.
+- Rate-limit status where available.
+- Environment configuration status.
+
+### Admin actions
+
+Where appropriate:
+
+- Check provider connection.
+- Enable or disable an integration.
+- View integration health.
+- View recent integration errors.
+- View usage metrics.
+- Update non-secret configuration.
+
+Never display full secret API keys.
+
+Never allow ordinary users to access integration management.
+
+Do not create fake connection-success indicators.
+
+A provider should only show as connected after an actual successful verification.
+
+---
+
+# 11. EXTERNAL API ROUTE ARCHITECTURE
+
+Keep the browser communicating with RIVALRY 90 internal APIs.
+
+External provider requests should normally be performed server-side.
+
+Suggested internal endpoints:
+
+- `/api/football/competitions`
+- `/api/football/teams`
+- `/api/football/players`
+- `/api/football/fixtures`
+- `/api/football/results`
+- `/api/football/standings`
+- `/api/football/live`
+- `/api/ai/chat`
+- `/api/ai/squad-analysis`
+- `/api/ai/player-analysis`
+- `/api/integrations/status`
+- `/api/admin/integrations`
+
+Only implement endpoints that are supported by the selected providers and actual project features.
+
+Use the existing Phase 21 response format.
+
+Do not expose upstream provider URLs or secret headers unnecessarily.
+
+---
+
+# 12. ENVIRONMENT VARIABLE MANAGEMENT
+
+Create or update:
+
+`.env.example`
+
+Document required configuration without including real secrets.
+
+Examples:
+
+FOOTBALL_API_KEY=
+FOOTBALL_API_BASE_URL=
+
+AI_PROVIDER=
+AI_API_KEY=
+AI_MODEL=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+EMAIL_API_KEY=
+EMAIL_FROM=
+
+YOUTUBE_API_KEY=
+
+ANALYTICS_PROVIDER=
+ANALYTICS_ID=
+
+These are illustrative variable names. Follow the chosen providers' actual requirements.
+
+### Strict security rules
+
+- Never commit `.env.local`.
+- Never expose API keys in browser bundles.
+- Never place secrets in `NEXT_PUBLIC_` variables.
+- Never print full keys in logs.
+- Never include real credentials in documentation.
+- Never ask Antigravity to invent API credentials.
+
+If credentials are unavailable, create the integration structure and document exactly what configuration is needed.
+
+Do not claim the provider is fully connected.
+
+---
+
+# 13. CACHING, RATE LIMITS AND RELIABILITY
+
+Create a provider-aware reliability system.
+
+### Caching
+
+Cache suitable public information:
+
+- Competitions.
+- Teams.
+- Player information.
+- League standings.
+- Historical results.
+- Video metadata.
+
+Use suitable cache durations depending on how frequently the information changes.
+
+Never publicly cache private user data.
+
+Live scores require short cache durations based on provider limits and data freshness.
+
+### Reliability
+
+- Request timeout.
+- Retry transient failures.
+- Exponential backoff where appropriate.
+- Respect provider rate-limit headers.
+- Handle HTTP 429.
+- Handle HTTP 401 and 403.
+- Handle HTTP 500 errors.
+- Handle invalid JSON.
+- Handle unavailable providers.
+- Provide graceful fallbacks.
+
+Do not retry permanent authentication or validation failures.
+
+Do not retry non-idempotent operations blindly.
+
+---
+
+# 14. DATABASE INTEGRATION
+
+Inspect the existing PostgreSQL schema before adding tables.
+
+Add only necessary integration-related records.
+
+Possible entities:
+
+- External provider configuration metadata.
+- External resource mappings.
+- Integration health checks.
+- Integration error logs.
+- AI usage records.
+- External data synchronization metadata.
+
+### Requirements
+
+- Use database migrations.
+- Preserve existing data.
+- Add appropriate indexes.
+- Avoid storing API secrets in ordinary database tables.
+- Avoid duplicating existing football records.
+- Track external provider IDs separately from internal IDs.
+- Record data source and synchronization timestamps.
+
+Never overwrite fictional RIVALRY 90 records with external football data.
+
+---
+
+# 15. TESTING
+
+Test each selected provider independently.
+
+### Football API
+
+- Successful connection.
+- Competition retrieval.
+- Team retrieval.
+- Fixture retrieval.
+- Invalid API key.
+- Rate-limit response.
+- Provider outage.
+
+### AI API
+
+- Successful AI request.
+- Squad analysis.
+- Invalid input.
+- Missing API key.
+- Provider timeout.
+- Rate-limit response.
+- Invalid AI response.
+- Unauthorized request.
+- Prompt injection handling.
+
+### Media API
+
+- Valid upload.
+- Invalid file type.
+- File-size limit.
+- Unauthorized deletion.
+- Provider failure.
+
+### Email API
+
+- Valid test message.
+- Invalid recipient.
+- Missing configuration.
+- Provider failure.
+- No accidental production emails.
+
+### Analytics
+
+- Correct event structure.
+- No duplicate events.
+- No sensitive data leakage.
+- Correct environment configuration.
+
+### Admin integrations
+
+- Authorized admin access.
+- Ordinary user denied.
+- Connection status verification.
+- Secret masking.
+- Error visibility.
+
+Test with development or staging credentials.
+
+Do not expose production keys in test output.
+
+---
+
+# 16. PERFORMANCE AND ACCESSIBILITY
+
+- Lazy-load external widgets.
+- Avoid unnecessary third-party scripts.
+- Avoid blocking homepage rendering.
+- Use responsive images.
+- Use loading skeletons.
+- Provide useful empty states.
+- Provide accessible error messages.
+- Support keyboard navigation.
+- Avoid layout shifts.
+- Respect reduced-motion preferences.
+- Keep external scripts out of critical rendering paths where possible.
+
+The website must remain usable if external providers become unavailable.
+
+---
+
+# 17. DOCUMENTATION
+
+Create or update the following documentation:
+
+`docs/EXTERNAL_API_ARCHITECTURE.md`
+
+`docs/FOOTBALL_DATA_INTEGRATION.md`
+
+`docs/AI_INTEGRATION_GUIDE.md`
+
+`docs/AI_SQUAD_ANALYSIS.md`
+
+`docs/MEDIA_PROVIDER_INTEGRATION.md`
+
+`docs/VIDEO_INTEGRATION.md`
+
+`docs/EMAIL_SERVICE_INTEGRATION.md`
+
+`docs/ANALYTICS_INTEGRATION.md`
+
+`docs/EXTERNAL_API_SECURITY.md`
+
+`docs/EXTERNAL_API_ENVIRONMENT_SETUP.md`
+
+`docs/EXTERNAL_API_TESTING_REPORT.md`
+
+`docs/DEVELOPMENT_ROADMAP.md`
+
+`docs/PROJECT_TASK_TRACKER.md`
+
+Document:
+
+- Provider selection.
+- Official documentation.
+- Required environment variables.
+- Free-tier limitations.
+- Pricing considerations.
+- Rate limits.
+- Data freshness.
+- Licensing.
+- Implemented endpoints.
+- Missing credentials.
+- Testing results.
+- Known limitations.
+
+Never write actual API keys into documentation.
+
+---
+
+# 18. FINAL ACCEPTANCE CRITERIA
+
+- [ ] External API architecture created.
+- [ ] Football data provider evaluated.
+- [ ] Primary football provider integrated where credentials permit.
+- [ ] Real football data clearly separated from fictional game data.
+- [ ] AI provider evaluated.
+- [ ] AI service architecture implemented.
+- [ ] AI squad analysis connected to saved squads.
+- [ ] AI player analysis supported where data permits.
+- [ ] Media provider integrated or existing provider reused.
+- [ ] Video integration implemented where configured.
+- [ ] Email integration implemented where appropriate.
+- [ ] Analytics integration configured where approved.
+- [ ] Admin integrations page implemented.
+- [ ] Environment variables documented.
+- [ ] Secrets protected.
+- [ ] Rate limiting and caching implemented appropriately.
+- [ ] Error handling and fallback implemented.
+- [ ] Database changes safely migrated.
+- [ ] Integration tests completed.
+- [ ] Documentation updated.
+- [ ] ESLint passed.
+- [ ] Production build passed.
+
+---
+
+# 19. FINAL REPORT
+
+After implementation, provide:
+
+1. Phase 22 completion status.
+2. External API architecture.
+3. Providers evaluated.
+4. Providers selected.
+5. Reasons for provider selection.
+6. Integrations successfully connected.
+7. Integrations awaiting credentials.
+8. Football data features.
+9. AI features.
+10. Media and video features.
+11. Email functionality.
+12. Analytics functionality.
+13. Admin integration monitoring.
+14. Environment variables required.
+15. Free-tier and pricing limitations.
+16. Rate-limit handling.
+17. Security implementation.
+18. Database changes.
+19. Testing results.
+20. ESLint results.
+21. Production build results.
+22. Remaining limitations.
+
+Clearly distinguish:
+
+- Fully working integrations.
+- Implemented but awaiting API credentials.
+- Planned integrations.
+- Unavailable or unsupported functionality.
+
+Do not fabricate successful API responses.
+
+---
+
+# 20. STRICT PHASE BOUNDARY
+
+This is Phase 22 – External API Integration.
+
+The next phase is:
+
+**Phase 23 – Frontend and UI Testing.**
+
+Do not automatically begin Phase 23.
+
+Do not redesign the website.
+
+Do not start implementing a playable football game.
+
+Do not replace the existing architecture.
+
+

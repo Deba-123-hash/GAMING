@@ -1,0 +1,2749 @@
+# RIVALRY 90 – PHASE 23: FRONTEND AND UI TESTING
+
+## ROLE
+
+Act as a Senior QA Engineer, Frontend Testing Architect, React Developer, UI/UX Quality Auditor, Accessibility Specialist and Performance Engineer.
+
+You are working on my existing project:
+
+**Project:** RIVALRY 90  
+**Current Phase:** 23 – Frontend and UI Testing  
+**Frontend:** Next.js + React  
+**Language:** JavaScript + JSX ONLY  
+**Styling:** Existing Tailwind CSS and design system  
+**Animations:** Existing GSAP and Motion architecture  
+**3D:** Existing Three.js / React Three Fiber architecture  
+**Backend:** Existing internal API architecture  
+**Database:** Existing PostgreSQL database
+
+Your mission is to conduct a complete frontend quality audit, identify defects, fix them and verify that the website works correctly across desktop, tablet and mobile devices.
+
+This is a testing and improvement phase, not a website redesign.
+
+---
+
+# 1. COMPLETE PROJECT INSPECTION
+
+Before testing:
+
+1. Inspect the complete project structure.
+2. Read documentation from Phases 01–22.
+3. Inspect all existing pages and layouts.
+4. Inspect global CSS and Tailwind configuration.
+5. Inspect the design system.
+6. Inspect all reusable components.
+7. Inspect header and footer.
+8. Inspect navigation and dropdowns.
+9. Inspect forms and buttons.
+10. Inspect frontend API integration.
+11. Inspect authentication flows.
+12. Inspect squad builder functionality.
+13. Inspect animations and transitions.
+14. Inspect Three.js scenes.
+15. Inspect image and video loading.
+16. Inspect mobile navigation.
+17. Inspect responsive breakpoints.
+18. Inspect accessibility implementation.
+19. Inspect existing automated tests.
+20. Identify incomplete or broken features.
+
+Preserve all existing working features.
+
+Do not remove existing functionality to make tests pass.
+
+---
+
+# 2. COMPLETE ROUTE TESTING
+
+Test every existing route.
+
+### Public pages
+
+- `/`
+- `/game-modes`
+- `/players`
+- `/players/[playerId]`
+- `/teams`
+- `/teams/[teamId]`
+- `/stadium`
+- `/squad`
+- `/events`
+- `/news`
+- `/news/[slug]`
+- `/media`
+- `/community`
+- `/support`
+
+### Authentication and profile pages
+
+- Login.
+- Registration.
+- Password reset.
+- User profile.
+- Profile editing.
+- Profile settings.
+- Profile security.
+- Profile privacy.
+- Public user profiles.
+
+Use the actual route paths implemented in the project.
+
+### Admin pages
+
+Test all existing admin routes, including:
+
+- Admin dashboard.
+- User management.
+- Role management.
+- Player management.
+- Team management.
+- Event management.
+- News management.
+- Media management.
+- Security.
+- Audit logs.
+- Integrations.
+- Settings.
+
+### Route testing requirements
+
+For every route verify:
+
+- Page loads.
+- Correct page title.
+- Correct content.
+- Correct layout.
+- Correct navigation.
+- No unexpected blank sections.
+- No broken images.
+- No console errors.
+- No hydration errors.
+- No broken links.
+- Correct loading state.
+- Correct empty state.
+- Correct error state.
+- Correct not-found behaviour.
+
+Check direct URL access and page refresh behaviour.
+
+---
+
+# 3. HEADER AND NAVIGATION TESTING
+
+Test the entire global navigation system.
+
+### Desktop
+
+- Logo navigation.
+- Main navigation links.
+- Dropdown menus.
+- Mega menus.
+- Search modal.
+- Account menu.
+- Active navigation states.
+- Footer navigation.
+
+### Mobile
+
+- Hamburger menu.
+- Menu opening and closing.
+- Navigation links.
+- Nested menus.
+- Search interaction.
+- Account access.
+- Touch interactions.
+- Scroll behaviour.
+
+### Functional tests
+
+- All links navigate correctly.
+- Dropdowns open and close correctly.
+- Escape closes appropriate overlays.
+- Outside clicks behave correctly.
+- Keyboard navigation works.
+- No menu gets hidden behind other elements.
+- No overlapping elements.
+- No accidental page scrolling.
+- No broken mobile menu state.
+
+---
+
+# 4. HOMEPAGE TESTING
+
+Audit every homepage section.
+
+Test:
+
+1. Hero section.
+2. Main headline.
+3. Primary CTA.
+4. Secondary CTA.
+5. Feature showcase.
+6. Game modes.
+7. Player showcase.
+8. Team showcase.
+9. Stadium showcase.
+10. Squad builder preview.
+11. Events.
+12. Latest news.
+13. Media gallery.
+14. Community section.
+15. Final CTA.
+16. Footer.
+
+### Requirements
+
+- Correct visual hierarchy.
+- Consistent section spacing.
+- Proper image sizing.
+- Correct CTA destinations.
+- No text overflow.
+- No overlapping elements.
+- No broken section transitions.
+- No excessive animation.
+- No horizontal scrolling.
+- Correct mobile stacking.
+
+Ensure that the homepage looks polished at large and small screen sizes.
+
+---
+
+# 5. INNER PAGE TESTING
+
+Test every inner page individually.
+
+### Game modes
+
+- Catalogue display.
+- Category filtering.
+- Mode selection.
+- Details navigation.
+- Availability labels.
+
+### Players
+
+- Player listing.
+- Search.
+- Position filters.
+- Rating filters.
+- Sorting.
+- Pagination.
+- Player details.
+- Missing player behaviour.
+
+### Teams
+
+- Team listing.
+- Club and national team filters.
+- Search.
+- Team details.
+- Roster display.
+
+### Stadium
+
+- Stadium scene loading.
+- 3D viewer controls.
+- Tabs.
+- Camera controls.
+- Loading fallback.
+- Mobile fallback.
+
+### Squad builder
+
+- Formation selection.
+- Player selection.
+- Player replacement.
+- Player removal.
+- Captain selection.
+- Substitute management.
+- Squad rating.
+- Save operation.
+- Loading state.
+- Error state.
+- Empty squad state.
+
+### Events
+
+- Event cards.
+- Filters.
+- Event details.
+- Registration where implemented.
+- Status indicators.
+
+### News
+
+- Article cards.
+- Article details.
+- Categories.
+- Tags.
+- Related articles.
+- Reading layout.
+
+### Media
+
+- Image gallery.
+- Video embeds.
+- Lightbox.
+- Gallery navigation.
+- Responsive media.
+
+### Community and support
+
+- Community links.
+- Forms.
+- Input validation.
+- Error messages.
+- Success messages only after actual success.
+
+---
+
+# 6. UI COMPONENT TESTING
+
+Test all reusable components.
+
+Include:
+
+- Buttons.
+- Cards.
+- Inputs.
+- Textareas.
+- Select menus.
+- Checkboxes.
+- Tabs.
+- Accordions.
+- Modals.
+- Dialogs.
+- Tooltips.
+- Dropdowns.
+- Search bars.
+- Pagination.
+- Loading skeletons.
+- Toast notifications.
+- Empty states.
+- Error states.
+- Badges.
+- Navigation components.
+
+Verify:
+
+- Hover state.
+- Focus state.
+- Active state.
+- Disabled state.
+- Loading state.
+- Mobile touch behaviour.
+- Correct keyboard behaviour.
+- Consistent styling.
+- Correct event handling.
+
+Remove dead or misleading interactions.
+
+Every visible button must perform its advertised action or be clearly marked as unavailable.
+
+---
+
+# 7. RESPONSIVE TESTING
+
+Test the website at these exact viewport widths:
+
+<DESKTOP>
+
+- 1920px
+- 1600px
+- 1440px
+- 1366px
+- 1280px
+
+<TABLET>
+
+- 1024px
+- 900px
+- 768px
+
+<MOBILE>
+
+- 430px
+- 414px
+- 390px
+- 375px
+- 360px
+- 320px
+
+### Responsive requirements
+
+- No horizontal overflow.
+- No broken grids.
+- No overlapping text.
+- No clipped buttons.
+- No broken navigation.
+- Correct font scaling.
+- Correct image cropping.
+- Correct card stacking.
+- Proper spacing.
+- Readable content.
+- Correct touch target sizes.
+- Proper modal sizing.
+- No broken 3D scenes.
+
+Test both portrait and landscape where relevant.
+
+Do not simply shrink the desktop layout.
+
+Improve mobile layouts intentionally while preserving the design identity.
+
+---
+
+# 8. UI DESIGN CONSISTENCY AUDIT
+
+Review the complete design system.
+
+### Brand identity
+
+- RIVALRY 90 logo.
+- Typography.
+- Colour palette.
+- Backgrounds.
+- Borders.
+- Shadows.
+- Buttons.
+- Icons.
+- Cards.
+- Section spacing.
+
+### Visual consistency
+
+- Consistent heading sizes.
+- Consistent font weights.
+- Consistent button styles.
+- Consistent border radii.
+- Consistent card designs.
+- Consistent page widths.
+- Consistent section spacing.
+- Consistent icon sizing.
+
+Check both configured themes.
+
+Fix inconsistent components using existing design tokens.
+
+Do not randomly introduce new colours, fonts or visual styles.
+
+---
+
+# 9. ANIMATION TESTING
+
+Test all existing animation systems.
+
+### UI animations
+
+- Page transitions.
+- Navigation transitions.
+- Dropdown animation.
+- Modal animation.
+- Button interactions.
+- Card hover effects.
+- Scroll reveals.
+- Section transitions.
+- Loading animations.
+
+### GSAP
+
+- Timeline execution.
+- ScrollTrigger behaviour.
+- Cleanup on unmount.
+- Route navigation.
+- Resize behaviour.
+- Reduced-motion behaviour.
+
+### Motion
+
+- Component entry.
+- Exit animations.
+- Hover animations.
+- Tap interactions.
+- Layout transitions.
+
+### Three.js animations
+
+- Scene initialization.
+- Camera movement.
+- Model loading.
+- Animation playback.
+- Animation cleanup.
+- WebGL error handling.
+- Mobile fallback.
+
+### Requirements
+
+- No animation loops continuing after unmount.
+- No memory leaks.
+- No broken transitions.
+- No scroll hijacking.
+- No excessive motion.
+- No blocking animations.
+- Respect `prefers-reduced-motion`.
+
+---
+
+# 10. THREE.JS AND 3D TESTING
+
+Inspect every existing 3D component.
+
+Test:
+
+- Canvas initialization.
+- Scene loading.
+- Camera configuration.
+- Lighting.
+- GLB/GLTF loading.
+- Texture loading.
+- AnimationMixer.
+- Controls.
+- Responsive scaling.
+- WebGL support.
+- Model loading errors.
+- Resource cleanup.
+
+### Device testing
+
+Check 3D behaviour on:
+
+- High-performance desktop.
+- Average laptop.
+- Tablet.
+- Mobile.
+
+### Performance requirements
+
+- Lazy-load heavy scenes.
+- Use compressed models.
+- Limit device pixel ratio.
+- Avoid unnecessary render loops.
+- Dispose geometries and materials.
+- Avoid excessive draw calls.
+- Use fallback images where necessary.
+
+Do not break the existing 3D architecture.
+
+---
+
+# 11. FRONTEND API AND DATA TESTING
+
+Test the frontend's connection to internal and external APIs.
+
+### Requirements
+
+- Correct request methods.
+- Correct endpoint URLs.
+- Correct request payloads.
+- Correct response handling.
+- Correct authentication.
+- Correct loading states.
+- Correct error states.
+- Correct empty states.
+- Correct pagination.
+- Correct cache updates.
+
+Test:
+
+- Players.
+- Teams.
+- Squad builder.
+- Profiles.
+- Events.
+- News.
+- Media.
+- Football data.
+- AI analysis.
+- Admin integrations.
+
+Simulate:
+
+- Slow responses.
+- Failed requests.
+- Expired sessions.
+- Invalid responses.
+- Rate limits.
+- Unavailable providers.
+
+Ensure that the website does not crash when an external API is unavailable.
+
+Do not expose API secrets in browser code or console logs.
+
+---
+
+# 12. FORM TESTING
+
+Test every form.
+
+Include:
+
+- Login.
+- Registration.
+- Password reset.
+- Profile editing.
+- Support contact.
+- Event registration.
+- News management.
+- Player management.
+- Team management.
+- Media upload.
+- Admin settings.
+
+### Validation checks
+
+- Required fields.
+- Email format.
+- Minimum and maximum length.
+- Invalid characters.
+- Empty submission.
+- Duplicate submission.
+- Loading state.
+- Server validation errors.
+- Success state.
+- Keyboard accessibility.
+
+Prevent accidental duplicate submissions.
+
+Show success messages only after the backend confirms success.
+
+---
+
+# 13. ACCESSIBILITY TESTING
+
+Follow accessibility best practices aligned with WCAG 2.2 AA.
+
+Test:
+
+- Semantic HTML.
+- Heading hierarchy.
+- Keyboard navigation.
+- Focus visibility.
+- Accessible names.
+- Form labels.
+- Error descriptions.
+- Colour contrast.
+- Alternative text.
+- Modal focus management.
+- Escape behaviour.
+- Reduced motion.
+- Screen-reader-friendly status messages.
+
+Check important components with automated accessibility testing where supported.
+
+Do not claim formal accessibility certification.
+
+---
+
+# 14. BROWSER TESTING
+
+Test in available browsers:
+
+- Google Chrome.
+- Microsoft Edge.
+- Mozilla Firefox.
+- Safari, if a supported test environment is available.
+
+Check:
+
+- Layout.
+- Navigation.
+- CSS rendering.
+- Fonts.
+- Animations.
+- Forms.
+- 3D rendering.
+- API requests.
+- Console errors.
+
+Clearly document browsers that could not be tested.
+
+---
+
+# 15. AUTOMATED FRONTEND TESTING
+
+Inspect the existing testing setup.
+
+Use existing tools where possible.
+
+If necessary, configure suitable tools such as:
+
+- Playwright.
+- Vitest.
+- React Testing Library.
+- axe-core.
+
+### Create tests for
+
+- Main navigation.
+- Homepage.
+- Page rendering.
+- Player search and filters.
+- Team search and filters.
+- Squad builder interactions.
+- Forms.
+- Modals.
+- Responsive navigation.
+- Authentication-dependent states.
+- Error handling.
+- Accessibility.
+
+Create reusable test utilities.
+
+Use realistic fixtures and mock external services safely.
+
+Do not rely entirely on mocked tests: verify critical user journeys against a real development environment where available.
+
+---
+
+# 16. VISUAL REGRESSION TESTING
+
+Where supported, create visual snapshots for key pages.
+
+Test screenshots at:
+
+- Desktop 1440px.
+- Laptop 1280px.
+- Tablet 768px.
+- Mobile 390px.
+
+Compare before and after changes.
+
+Identify:
+
+- Spacing differences.
+- Typography differences.
+- Missing elements.
+- Incorrect colours.
+- Broken grids.
+- Overflow.
+- Layout shifts.
+
+Do not overwrite useful existing snapshots without reviewing the changes.
+
+---
+
+# 17. PERFORMANCE TESTING
+
+Audit:
+
+- Largest Contentful Paint.
+- Interaction to Next Paint.
+- Cumulative Layout Shift.
+- First Contentful Paint.
+- Total Blocking Time where measured.
+- JavaScript bundle size.
+- Image loading.
+- Font loading.
+- 3D scene loading.
+- API request waterfalls.
+
+Use Lighthouse or equivalent tools where available.
+
+### Improvement requirements
+
+- Optimize image delivery.
+- Lazy-load non-critical content.
+- Reduce unnecessary JavaScript.
+- Avoid duplicate requests.
+- Prevent layout shifts.
+- Optimize fonts.
+- Reduce animation overhead.
+- Keep 3D resources out of routes that do not need them.
+
+Report actual measured results.
+
+Do not invent performance scores.
+
+---
+
+# 18. BUG FIXING AND PRIORITIZATION
+
+Create a structured bug report.
+
+Classify defects:
+
+**P0 – Critical**
+- Application crashes.
+- Authentication/security failure.
+- Major data loss.
+- Production build failure.
+
+**P1 – High**
+- Major page broken.
+- Navigation failure.
+- Core functionality unavailable.
+- Squad builder cannot save.
+
+**P2 – Medium**
+- Responsive layout defects.
+- Incorrect component interactions.
+- Broken animations.
+- Visual inconsistencies.
+
+**P3 – Low**
+- Minor spacing issues.
+- Small typography defects.
+- Non-critical polish.
+
+Fix P0 and P1 defects first.
+
+Then fix P2 and important P3 issues.
+
+Do not hide unresolved bugs.
+
+---
+
+# 19. CREATE TESTING DOCUMENTATION
+
+Create or update:
+
+`docs/FRONTEND_TESTING_STRATEGY.md`
+
+`docs/ROUTE_TESTING_REPORT.md`
+
+`docs/RESPONSIVE_TESTING_REPORT.md`
+
+`docs/UI_COMPONENT_TESTING.md`
+
+`docs/ACCESSIBILITY_TESTING_REPORT.md`
+
+`docs/ANIMATION_TESTING_REPORT.md`
+
+`docs/THREE_JS_TESTING_REPORT.md`
+
+`docs/BROWSER_COMPATIBILITY_REPORT.md`
+
+`docs/PERFORMANCE_TESTING_REPORT.md`
+
+`docs/FRONTEND_BUG_TRACKER.md`
+
+`docs/DEVELOPMENT_ROADMAP.md`
+
+`docs/PROJECT_TASK_TRACKER.md`
+
+Document:
+
+- Tests performed.
+- Routes tested.
+- Viewports tested.
+- Browsers tested.
+- Bugs identified.
+- Bugs fixed.
+- Bugs still open.
+- Performance measurements.
+- Accessibility findings.
+- Limitations.
+
+---
+
+# 20. FINAL ACCEPTANCE CRITERIA
+
+- [ ] All public routes tested.
+- [ ] All profile routes tested.
+- [ ] All admin routes tested.
+- [ ] Navigation tested.
+- [ ] Homepage tested.
+- [ ] Inner pages tested.
+- [ ] UI components tested.
+- [ ] Responsive viewports tested.
+- [ ] Mobile navigation tested.
+- [ ] Forms tested.
+- [ ] Animations tested.
+- [ ] Three.js scenes tested.
+- [ ] API integrations tested from frontend.
+- [ ] Accessibility tested.
+- [ ] Browser compatibility tested where possible.
+- [ ] Automated tests executed.
+- [ ] Visual regression checks performed where configured.
+- [ ] Performance measured.
+- [ ] Critical bugs fixed.
+- [ ] Documentation updated.
+- [ ] ESLint passed.
+- [ ] Production build passed.
+
+---
+
+# 21. FINAL REPORT
+
+After testing and fixing defects, provide:
+
+1. Phase 23 completion status.
+2. Total routes tested.
+3. Total components tested.
+4. Viewports tested.
+5. Browsers tested.
+6. Homepage test results.
+7. Inner-page test results.
+8. Navigation test results.
+9. Form test results.
+10. Responsive test results.
+11. Animation test results.
+12. Three.js test results.
+13. API integration test results.
+14. Accessibility results.
+15. Performance measurements.
+16. Total bugs identified.
+17. Total bugs fixed.
+18. Remaining bugs.
+19. Automated test results.
+20. ESLint results.
+21. Production build result.
+22. Files created and modified.
+
+Clearly separate passed tests, failed tests and tests that could not be performed.
+
+Do not report a test as passed unless it was actually executed.
+
+---
+
+# 22. STRICT PHASE BOUNDARY
+
+This is Phase 23 – Frontend and UI Testing.
+
+The next phase is:
+
+**Phase 24 – Backend, Database and API Testing.**
+
+Do not automatically begin Phase 24.
+
+Do not redesign the website.
+
+Do not remove existing features.
+
+Do not start new football game functionality.
+
+# RIVALRY 90 – PHASE 24: BACKEND, DATABASE AND API TESTING
+
+## ROLE
+
+Act as a Senior Backend QA Engineer, PostgreSQL Database Administrator, API Security Engineer, Full-Stack JavaScript Developer and Application Reliability Architect.
+
+You are working on my existing project:
+
+**Project:** RIVALRY 90  
+**Current Phase:** 24 – Backend, Database and API Testing  
+**Backend:** Existing Next.js Route Handlers  
+**Language:** JavaScript ONLY  
+**Database:** Existing PostgreSQL provider  
+**Authentication:** Existing authentication provider  
+**Internal APIs:** Phase 21  
+**External APIs:** Phase 22  
+**Frontend Testing:** Phase 23
+
+Your mission is to perform a complete backend, database and API quality audit, identify defects, fix them and verify that the entire backend works correctly.
+
+This is a testing and stabilization phase. Do not redesign the frontend or introduce unnecessary new features.
+
+---
+
+# 1. COMPLETE BACKEND INSPECTION
+
+Before testing:
+
+1. Inspect the complete project structure.
+2. Read documentation from Phases 01–23.
+3. Inspect all backend route handlers.
+4. Inspect service and repository layers.
+5. Inspect database connection utilities.
+6. Inspect PostgreSQL schema.
+7. Inspect database migrations.
+8. Inspect database indexes.
+9. Inspect database constraints.
+10. Inspect authentication implementation.
+11. Inspect authorization and RBAC.
+12. Inspect profile services.
+13. Inspect player and team services.
+14. Inspect squad services.
+15. Inspect event and news services.
+16. Inspect media services.
+17. Inspect admin services.
+18. Inspect external API integrations.
+19. Inspect validation utilities.
+20. Inspect error handling and logging.
+21. Inspect environment variables.
+22. Inspect automated tests.
+23. Identify incomplete implementations.
+24. Identify security weaknesses.
+25. Identify duplicated or inefficient queries.
+
+Preserve all working functionality.
+
+Do not replace the database provider.
+
+Do not reset existing production data.
+
+Never expose credentials in logs or reports.
+
+---
+
+# 2. BACKEND API TESTING
+
+Build a complete endpoint inventory from the actual project.
+
+Test all implemented endpoint categories.
+
+### Authentication
+
+- Registration.
+- Login.
+- Logout.
+- Current session.
+- Password reset.
+- Email verification.
+- Session expiration.
+
+### User and profile
+
+- Get profile.
+- Update profile.
+- Public user profile.
+- Profile settings.
+- Privacy settings.
+- Avatar metadata.
+
+### Players
+
+- Player listing.
+- Player details.
+- Search.
+- Filtering.
+- Sorting.
+- Pagination.
+- Create.
+- Update.
+- Delete.
+
+### Teams
+
+- Team listing.
+- Team details.
+- Team roster.
+- Search.
+- Filtering.
+- Create.
+- Update.
+- Delete.
+
+### Game modes
+
+- Game mode listing.
+- Game mode details.
+- Categories.
+- Availability status.
+
+### Squads
+
+- Create squad.
+- Retrieve squad.
+- Update squad.
+- Delete squad.
+- Assign player.
+- Remove player.
+- Update formation.
+- Set captain.
+- Manage substitutes.
+- Calculate squad rating.
+
+### Events
+
+- Event listing.
+- Event details.
+- Event registration.
+- Registration cancellation.
+- Event management.
+
+### News
+
+- News listing.
+- Article details.
+- Categories.
+- Search.
+- Publishing.
+- Draft management.
+
+### Media
+
+- Media listing.
+- Media details.
+- Upload.
+- Update.
+- Delete.
+- Category filtering.
+
+### Admin
+
+- Dashboard metrics.
+- User management.
+- Role management.
+- Content management.
+- Audit logs.
+- Security.
+- Integration monitoring.
+- Settings.
+
+Test every endpoint using valid and invalid requests.
+
+---
+
+# 3. HTTP METHOD AND STATUS CODE TESTING
+
+Verify correct HTTP behaviour.
+
+### HTTP methods
+
+- GET.
+- POST.
+- PUT, where implemented.
+- PATCH.
+- DELETE.
+
+### Status codes
+
+Verify appropriate usage of:
+
+- 200 – Successful request.
+- 201 – Resource created.
+- 204 – Successful operation with no response body.
+- 400 – Invalid request.
+- 401 – Unauthenticated.
+- 403 – Forbidden.
+- 404 – Resource not found.
+- 409 – Conflict.
+- 422 – Validation failure, where used.
+- 429 – Rate limit exceeded.
+- 500 – Internal server error.
+- 502/503 – Upstream or service unavailable.
+
+Do not return 200 for failed operations.
+
+Do not leak internal exceptions.
+
+Verify that every endpoint follows the Phase 21 response convention.
+
+---
+
+# 4. AUTHENTICATION TESTING
+
+Test the complete authentication lifecycle.
+
+### Test cases
+
+1. Register a valid user.
+2. Register with invalid email.
+3. Register with missing fields.
+4. Attempt duplicate registration.
+5. Login with valid credentials.
+6. Login with invalid credentials.
+7. Logout.
+8. Access protected endpoint without session.
+9. Access protected endpoint with valid session.
+10. Access endpoint with expired session.
+11. Reset password.
+12. Verify email where supported.
+13. Refresh or restore session where supported.
+
+### Security requirements
+
+- Validate authentication server-side.
+- Secure session handling.
+- Secure cookies where applicable.
+- No plaintext password storage.
+- No credentials in logs.
+- No sensitive authentication data in API responses.
+- No unauthorized session reuse.
+
+Use the existing authentication provider. Do not create a second authentication system.
+
+---
+
+# 5. ROLE-BASED ACCESS CONTROL TESTING
+
+Verify the existing Phase 17 roles.
+
+Roles:
+
+- Super Admin.
+- Admin.
+- Content Manager.
+- Moderator.
+- User.
+
+Create a permission testing matrix.
+
+Test access to:
+
+- User management.
+- Player management.
+- Team management.
+- Event management.
+- News management.
+- Media management.
+- Role management.
+- Audit logs.
+- Security settings.
+- External integration settings.
+
+### Required scenarios
+
+- Ordinary user accessing admin API.
+- Moderator accessing restricted role management.
+- Content Manager modifying permitted content.
+- Admin performing permitted administrative actions.
+- Super Admin accessing authorized system operations.
+- User attempting to modify another user's records.
+- User attempting to change their own role.
+
+All permissions must be enforced server-side.
+
+Do not rely on hidden buttons or frontend route protection.
+
+Prevent privilege escalation.
+
+---
+
+# 6. POSTGRESQL DATABASE TESTING
+
+Inspect and test the complete database schema.
+
+### Check all tables
+
+- Users and profiles.
+- Roles and permissions.
+- Players.
+- Teams.
+- Player-team relationships.
+- Game modes.
+- Formations.
+- Squads.
+- Squad players.
+- Events.
+- Event registrations.
+- News.
+- Media.
+- Audit logs.
+- Integration metadata.
+- Other existing domain tables.
+
+Use the actual table names from the existing schema.
+
+### Test database integrity
+
+- Primary keys.
+- Foreign keys.
+- Unique constraints.
+- NOT NULL constraints.
+- Check constraints.
+- Default values.
+- Indexes.
+- Relationship integrity.
+- Referential actions.
+- Data types.
+
+### Test operations
+
+- INSERT.
+- SELECT.
+- UPDATE.
+- DELETE.
+- Transactions.
+- Rollbacks.
+- Joins.
+- Pagination queries.
+- Search queries.
+- Sorting queries.
+
+Verify that database records remain correct after each operation.
+
+Do not delete real user data during testing.
+
+Use isolated test records and clean them up safely.
+
+---
+
+# 7. DATABASE MIGRATION TESTING
+
+Inspect all migration files.
+
+Verify:
+
+- Migration order.
+- Migration consistency.
+- Schema compatibility.
+- Foreign key creation.
+- Index creation.
+- Constraint creation.
+- Seed scripts.
+- Rollback strategy.
+- Duplicate migration prevention.
+
+Test migrations using an isolated test database or disposable schema.
+
+Never run destructive migration experiments against production.
+
+Do not rewrite migration history without a documented reason.
+
+Create a safe database recovery plan if missing.
+
+---
+
+# 8. DATABASE PERFORMANCE TESTING
+
+Evaluate the most frequently used database operations.
+
+Test:
+
+- Player listing.
+- Team listing.
+- Team roster.
+- Player search.
+- Squad retrieval.
+- Squad updates.
+- Event listing.
+- News listing.
+- Admin dashboard metrics.
+- User management queries.
+
+### Identify
+
+- Slow queries.
+- Missing indexes.
+- Unnecessary joins.
+- N+1 queries.
+- Repeated database calls.
+- Full table scans where avoidable.
+- Inefficient pagination.
+- Connection pool problems.
+
+Use PostgreSQL query analysis tools such as `EXPLAIN` and `EXPLAIN ANALYZE` on safe test queries.
+
+Do not execute expensive or destructive analysis on production without approval.
+
+Improve only where measurements justify changes.
+
+---
+
+# 9. SQUAD BUILDER DATABASE TESTING
+
+Perform complete squad persistence tests.
+
+### Test scenarios
+
+1. Create a squad.
+2. Save its name.
+3. Select a formation.
+4. Add a starting player.
+5. Add additional players.
+6. Assign a captain.
+7. Add substitutes.
+8. Remove a player.
+9. Replace a player.
+10. Update formation.
+11. Retrieve the saved squad.
+12. Refresh the application.
+13. Verify persistence.
+14. Delete the squad.
+
+### Integrity checks
+
+- Maximum 11 starting players.
+- Respect substitute limits.
+- No duplicate player assignment.
+- Valid formation.
+- Valid player references.
+- Valid squad ownership.
+- Only one captain.
+- Correct squad rating calculation.
+- Correct database relationships.
+
+### Concurrency tests
+
+Test simultaneous squad updates where practical.
+
+Prevent lost updates and inconsistent squad states.
+
+Use database transactions where necessary.
+
+Do not let AI recommendations directly modify a saved squad.
+
+---
+
+# 10. EXTERNAL API TESTING
+
+Test all external integrations implemented in Phase 22.
+
+### Football data provider
+
+- Valid API key.
+- Invalid API key.
+- Missing API key.
+- Successful data retrieval.
+- Rate limiting.
+- Timeout.
+- Invalid response.
+- Provider outage.
+
+### AI provider
+
+- Successful request.
+- Invalid prompt.
+- Oversized request.
+- Missing configuration.
+- Provider timeout.
+- Rate limit.
+- Invalid response structure.
+- Unauthorized request.
+- Usage-limit enforcement.
+
+### Media provider
+
+- Valid upload.
+- Invalid file.
+- Oversized file.
+- Unauthorized deletion.
+- Storage failure.
+
+### Email provider
+
+- Valid test request.
+- Invalid recipient.
+- Missing configuration.
+- Provider outage.
+- Duplicate request prevention.
+
+### Analytics
+
+- Correct event payload.
+- No sensitive data leakage.
+- No unnecessary duplicate tracking.
+
+Never use real production credentials in logs.
+
+Do not fabricate successful provider responses.
+
+---
+
+# 11. API SECURITY TESTING
+
+Perform a security review of all API endpoints.
+
+Test for:
+
+- Broken access control.
+- IDOR vulnerabilities.
+- Privilege escalation.
+- SQL injection.
+- Cross-site scripting through stored content.
+- Cross-site request forgery where applicable.
+- Unsafe file uploads.
+- Mass assignment.
+- Excessive request sizes.
+- Missing validation.
+- Information disclosure.
+- Sensitive data exposure.
+- Insecure caching.
+- Rate-limit bypass.
+- Session weaknesses.
+
+### Important requirements
+
+- Parameterized database queries.
+- Server-side authorization.
+- Input validation.
+- Output sanitization where appropriate.
+- Secure file validation.
+- Safe error messages.
+- Rate limiting.
+- Appropriate security headers.
+- Secret management.
+- Audit logging for sensitive actions.
+
+Do not perform destructive security testing against production.
+
+Use authorized test accounts and isolated test environments.
+
+---
+
+# 12. INPUT VALIDATION TESTING
+
+Test all API request inputs.
+
+Include:
+
+- Empty strings.
+- Missing fields.
+- Invalid IDs.
+- Invalid UUIDs where applicable.
+- Invalid email addresses.
+- Extremely long strings.
+- Invalid dates.
+- Invalid status values.
+- Negative numbers.
+- Out-of-range ratings.
+- Unexpected object properties.
+- Malformed JSON.
+- Large request payloads.
+- Invalid file metadata.
+
+Ensure that invalid inputs are rejected before reaching sensitive database operations.
+
+Return consistent validation errors.
+
+---
+
+# 13. TRANSACTION AND DATA CONSISTENCY TESTING
+
+Test multi-step operations.
+
+Examples:
+
+- User profile updates.
+- Squad creation with players.
+- Squad player replacement.
+- Event registration.
+- Player-team relationship updates.
+- Content publishing.
+- Administrative changes.
+
+### Requirements
+
+- Atomic operations where necessary.
+- Correct rollback on failure.
+- No partial inconsistent records.
+- No duplicate registrations.
+- No duplicate relationships.
+- Correct foreign key handling.
+- Consistent audit records.
+
+Test failure conditions intentionally in an isolated environment.
+
+---
+
+# 14. FILE UPLOAD AND STORAGE TESTING
+
+Test all media upload functionality.
+
+Verify:
+
+- File type validation.
+- File size limits.
+- MIME type checks.
+- Filename handling.
+- Upload authorization.
+- Storage provider response.
+- Database metadata.
+- Deletion behaviour.
+- Failed upload cleanup.
+
+Reject executable or unsupported files.
+
+Do not trust browser-provided file extensions alone.
+
+Verify that deleting a media record does not accidentally delete unrelated files.
+
+---
+
+# 15. RATE LIMITING AND ABUSE TESTING
+
+Test rate limits for:
+
+- Login attempts.
+- Registration.
+- Password reset.
+- AI requests.
+- Search endpoints.
+- Media uploads.
+- Public API endpoints.
+- Admin operations.
+
+### Requirements
+
+- Appropriate limits.
+- Correct 429 response.
+- Safe retry guidance.
+- No accidental lockout of ordinary users.
+- Protection against excessive AI API usage.
+- Protection against external API quota exhaustion.
+
+Use safe test volumes.
+
+Do not run uncontrolled load tests.
+
+---
+
+# 16. LOGGING AND MONITORING TESTING
+
+Verify the backend logging architecture.
+
+Track:
+
+- Request ID.
+- Endpoint.
+- HTTP method.
+- Response status.
+- Request duration.
+- Error category.
+- Integration failures.
+- Database failures.
+- Sensitive administrative actions.
+
+### Security requirements
+
+Never log:
+
+- Passwords.
+- Session tokens.
+- API keys.
+- Full authentication headers.
+- Sensitive private user data.
+
+Ensure that logs do not expose internal database credentials.
+
+Verify that critical errors are discoverable and actionable.
+
+---
+
+# 17. AUTOMATED BACKEND TESTING
+
+Inspect the current testing architecture.
+
+Use existing tools where possible.
+
+Suitable tools may include:
+
+- Vitest.
+- Jest.
+- Supertest where compatible.
+- Playwright API testing.
+- Testcontainers if already supported and practical.
+
+### Create test suites
+
+- Authentication tests.
+- Authorization tests.
+- Profile API tests.
+- Player API tests.
+- Team API tests.
+- Squad API tests.
+- Event API tests.
+- News API tests.
+- Media API tests.
+- Admin API tests.
+- Database integrity tests.
+- External integration tests.
+- Security tests.
+
+### Requirements
+
+- Isolated test data.
+- Safe test cleanup.
+- Repeatable tests.
+- No production database mutation.
+- Clear failure reporting.
+- Realistic request and response tests.
+
+Mock external providers when testing internal error handling, but also perform real integration tests when authorized test credentials are available.
+
+---
+
+# 18. LOAD AND STRESS TESTING
+
+Perform controlled backend performance tests.
+
+Evaluate:
+
+- Concurrent API requests.
+- Database connection usage.
+- Player listing performance.
+- Team listing performance.
+- Squad retrieval.
+- Squad update operations.
+- News and events retrieval.
+- Admin dashboard requests.
+
+Measure:
+
+- Average response time.
+- Median response time.
+- p95 response time.
+- p99 response time where measurable.
+- Error rate.
+- Throughput.
+- Database connection usage.
+
+Use a controlled test environment and reasonable test loads.
+
+Do not run high-volume traffic against third-party APIs or production systems.
+
+Do not invent performance measurements.
+
+Document the environment and test conditions.
+
+---
+
+# 19. DOCUMENTATION
+
+Create or update:
+
+`docs/BACKEND_TESTING_STRATEGY.md`
+
+`docs/API_ENDPOINT_TESTING_REPORT.md`
+
+`docs/DATABASE_INTEGRITY_REPORT.md`
+
+`docs/DATABASE_MIGRATION_TESTING.md`
+
+`docs/DATABASE_PERFORMANCE_REPORT.md`
+
+`docs/AUTHENTICATION_TESTING_REPORT.md`
+
+`docs/AUTHORIZATION_SECURITY_TESTING.md`
+
+`docs/SQUAD_DATABASE_TESTING.md`
+
+`docs/EXTERNAL_INTEGRATION_TESTING.md`
+
+`docs/API_SECURITY_AUDIT.md`
+
+`docs/LOAD_AND_STRESS_TESTING.md`
+
+`docs/BACKEND_BUG_TRACKER.md`
+
+`docs/DEVELOPMENT_ROADMAP.md`
+
+`docs/PROJECT_TASK_TRACKER.md`
+
+Include:
+
+- Test scenarios.
+- Test environment.
+- Test accounts and roles without passwords or secrets.
+- Test results.
+- Defects found.
+- Defects fixed.
+- Remaining risks.
+- Performance measurements.
+- Configuration requirements.
+
+---
+
+# 20. FINAL ACCEPTANCE CRITERIA
+
+- [ ] All implemented backend endpoints tested.
+- [ ] Authentication tested.
+- [ ] RBAC tested.
+- [ ] PostgreSQL tables tested.
+- [ ] Relationships and constraints verified.
+- [ ] Database migrations tested safely.
+- [ ] Database performance evaluated.
+- [ ] Squad persistence verified.
+- [ ] External integrations tested.
+- [ ] API security audit completed.
+- [ ] Input validation tested.
+- [ ] Transactions tested.
+- [ ] File uploads tested.
+- [ ] Rate limiting tested.
+- [ ] Logging reviewed.
+- [ ] Automated backend tests executed.
+- [ ] Controlled performance tests completed.
+- [ ] Critical defects fixed.
+- [ ] Documentation updated.
+- [ ] ESLint passed.
+- [ ] Production build passed.
+
+---
+
+# 21. FINAL REPORT
+
+After implementation, provide:
+
+1. Phase 24 completion status.
+2. Backend architecture audit.
+3. Total endpoints identified.
+4. Total endpoints tested.
+5. Authentication test results.
+6. Authorization test results.
+7. Database integrity results.
+8. Migration test results.
+9. Squad persistence results.
+10. External integration test results.
+11. API security findings.
+12. Input validation results.
+13. Transaction test results.
+14. File upload results.
+15. Rate-limiting results.
+16. Logging and monitoring results.
+17. Automated test results.
+18. Load test measurements.
+19. Total bugs identified.
+20. Total bugs fixed.
+21. Remaining critical and high-priority issues.
+22. ESLint results.
+23. Production build results.
+
+Clearly identify tests that were not performed because credentials, infrastructure or configuration were unavailable.
+
+Do not claim that the backend is secure or production-ready solely because the build passes.
+
+---
+
+# 22. STRICT PHASE BOUNDARY
+
+This is Phase 24 – Backend, Database and API Testing.
+
+The next phase is:
+
+**Phase 25 – Final Performance and Deployment Testing.**
+
+This is the FINAL PHASE of the original 25-phase development roadmap.
+
+Do not automatically begin Phase 25.
+
+Do not start the additional 10 football-universe expansion phases.
+
+# RIVALRY 90 – PHASE 25: FINAL PERFORMANCE AND DEPLOYMENT TESTING
+
+## ROLE
+
+Act as a Senior DevOps Engineer, Cloud Deployment Architect, Performance Optimization Engineer, Security Engineer, Full-Stack JavaScript Developer and Production QA Specialist.
+
+You are working on my existing project:
+
+**Project:** RIVALRY 90  
+**Current Phase:** 25 – Final Performance and Deployment Testing  
+**Frontend:** Next.js + React  
+**Backend:** Existing Next.js Route Handlers  
+**Language:** JavaScript + JSX ONLY  
+**Database:** Existing PostgreSQL provider  
+**Authentication:** Existing authentication provider  
+**Animations:** GSAP + Motion  
+**3D:** Three.js + React Three Fiber  
+**External APIs:** Existing Phase 22 integrations  
+**Deployment target:** Vercel or the existing documented hosting platform
+
+Your mission is to prepare the complete RIVALRY 90 application for production deployment, optimize its performance, verify its security and configuration, and conduct a final production-readiness audit.
+
+Do not simply generate deployment instructions. Inspect the real project, implement necessary improvements, execute available checks and deploy only when the required credentials and explicit deployment permissions are available.
+
+---
+
+# 1. COMPLETE PROJECT INSPECTION
+
+Before making changes:
+
+1. Inspect the complete project structure.
+2. Read documentation from Phases 01–24.
+3. Inspect the Next.js configuration.
+4. Inspect React and dependency versions.
+5. Inspect JavaScript and JSX files.
+6. Inspect Tailwind and global CSS.
+7. Inspect all application routes.
+8. Inspect backend route handlers.
+9. Inspect PostgreSQL configuration.
+10. Inspect database migrations.
+11. Inspect authentication configuration.
+12. Inspect environment variables.
+13. Inspect external API integrations.
+14. Inspect image and video assets.
+15. Inspect Three.js models and textures.
+16. Inspect animation architecture.
+17. Inspect testing configuration.
+18. Inspect build and deployment scripts.
+19. Inspect Git configuration.
+20. Identify production blockers.
+
+### Strict rules
+
+- Preserve all completed features from Phases 01–24.
+- Do not rebuild the project.
+- Do not replace the database provider.
+- Do not replace authentication.
+- Use JavaScript and JSX only.
+- Never create `.ts` or `.tsx` files.
+- Never commit secrets.
+- Never expose API keys.
+- Never delete production data.
+- Never deploy broken code just to complete this phase.
+- Do not start the additional 10 expansion phases automatically.
+
+---
+
+# 2. PRODUCTION ENVIRONMENT CONFIGURATION
+
+Prepare a proper production configuration.
+
+Inspect and configure:
+
+- Production build environment.
+- Development environment.
+- Staging environment where available.
+- Environment variables.
+- Database connection.
+- Authentication URLs.
+- External API configuration.
+- File storage configuration.
+- Email configuration.
+- Analytics configuration.
+- Application base URL.
+- Security configuration.
+
+### Environment variable management
+
+Review `.env.example` and ensure that it documents all required variables without real secrets.
+
+Potential variables include:
+
+- Database connection URL.
+- Authentication configuration.
+- Football API credentials.
+- AI provider credentials.
+- Media storage credentials.
+- Email service credentials.
+- Analytics configuration.
+- Application URL.
+
+Use the actual variable names required by the existing implementation.
+
+### Security rules
+
+- Never commit `.env.local`.
+- Never commit production credentials.
+- Never expose private environment variables through browser bundles.
+- Never place secret API keys in `NEXT_PUBLIC_` variables.
+- Never print secrets in build logs.
+- Verify `.gitignore`.
+- Verify production environment separation.
+- Ensure environment validation runs before critical services initialize.
+
+Create a clear production environment setup guide.
+
+---
+
+# 3. PRODUCTION BUILD TESTING
+
+Run the complete production build.
+
+Check:
+
+- Dependency installation.
+- Next.js compilation.
+- JavaScript syntax.
+- JSX compilation.
+- Route generation.
+- Server components.
+- Client components.
+- Dynamic routes.
+- API routes.
+- Static assets.
+- CSS generation.
+- Image configuration.
+- 3D asset paths.
+- Environment validation.
+
+### Required checks
+
+- Run the project's lint command.
+- Run the complete automated test suite.
+- Run the production build.
+- Start the production server locally.
+- Test critical routes against the production build.
+- Inspect terminal errors.
+- Inspect browser console errors.
+- Inspect hydration errors.
+
+Fix build failures and critical warnings.
+
+Do not suppress errors just to achieve a successful build.
+
+Document any warnings that are safe but unresolved.
+
+---
+
+# 4. FRONTEND PERFORMANCE OPTIMIZATION
+
+Optimize the entire website.
+
+### JavaScript optimization
+
+- Remove unused dependencies where safe.
+- Remove unnecessary client-side JavaScript.
+- Avoid duplicate libraries.
+- Use server components by default where appropriate.
+- Lazy-load heavy components.
+- Split large components where useful.
+- Avoid unnecessary React re-renders.
+- Optimize state management.
+- Avoid unnecessary API requests.
+
+### CSS optimization
+
+- Remove unused styles where safe.
+- Reduce duplicated CSS.
+- Use existing design tokens.
+- Avoid excessive layout recalculation.
+- Optimize responsive styles.
+- Avoid unnecessary animation effects.
+
+### Image optimization
+
+- Use Next.js image optimization where compatible.
+- Use suitable image formats.
+- Optimize image dimensions.
+- Provide responsive image sizes.
+- Lazy-load non-critical images.
+- Prioritize important hero images appropriately.
+- Prevent layout shifts.
+- Provide fallbacks for missing assets.
+
+### Font optimization
+
+- Optimize font loading.
+- Use appropriate font subsets.
+- Avoid unnecessary font weights.
+- Use suitable fallback fonts.
+- Prevent font-related layout shifts.
+
+Do not damage the visual identity while optimizing performance.
+
+---
+
+# 5. THREE.JS AND 3D PERFORMANCE OPTIMIZATION
+
+Audit all 3D content.
+
+Check:
+
+- Stadium models.
+- Player models.
+- Football pitch.
+- Textures.
+- GLB/GLTF assets.
+- Animations.
+- Lighting.
+- Camera controls.
+- WebGL canvas.
+- Scene loading.
+- Memory cleanup.
+
+### Optimization requirements
+
+- Lazy-load 3D scenes.
+- Compress models.
+- Optimize geometry.
+- Compress textures.
+- Use appropriate texture resolutions.
+- Use Draco or Meshopt where compatible.
+- Use KTX2/Basis textures where appropriate.
+- Reduce unnecessary draw calls.
+- Use instancing for repeated objects where useful.
+- Limit device pixel ratio.
+- Avoid unnecessary render loops.
+- Dispose unused resources.
+- Provide static fallbacks.
+- Handle WebGL errors gracefully.
+
+### Device performance
+
+Test on:
+
+- High-performance desktop.
+- Average laptop.
+- Tablet.
+- Low-end mobile device.
+
+The website must remain usable when WebGL is unavailable.
+
+Do not make the entire homepage dependent on a 3D scene loading successfully.
+
+---
+
+# 6. CORE WEB VITALS AND LIGHTHOUSE AUDIT
+
+Run performance audits using Lighthouse or equivalent tools where available.
+
+Measure:
+
+- Largest Contentful Paint (LCP).
+- Interaction to Next Paint (INP).
+- Cumulative Layout Shift (CLS).
+- First Contentful Paint (FCP).
+- Speed Index.
+- Total Blocking Time where measured.
+- JavaScript bundle size.
+- Image loading performance.
+
+### Target guidance
+
+Aim for these Core Web Vitals thresholds at the 75th percentile where real-user data is available:
+
+- LCP: 2.5 seconds or less.
+- INP: 200 milliseconds or less.
+- CLS: 0.1 or less.
+
+Use lab measurements as diagnostics, not as proof of real-user performance.
+
+Do not invent scores.
+
+Record:
+
+- Initial results.
+- Optimizations performed.
+- Final results.
+- Testing environment.
+- Remaining bottlenecks.
+
+---
+
+# 7. BACKEND AND DATABASE PRODUCTION READINESS
+
+Audit the backend before deployment.
+
+Check:
+
+- Database connection pooling.
+- Connection limits.
+- Query efficiency.
+- Database indexes.
+- Transaction handling.
+- Error handling.
+- API validation.
+- Authentication.
+- Authorization.
+- Rate limiting.
+- Logging.
+- Timeout handling.
+- External provider failures.
+
+### PostgreSQL requirements
+
+- Verify production connection configuration.
+- Verify SSL requirements.
+- Verify connection pooling.
+- Verify migrations.
+- Verify required indexes.
+- Verify constraints.
+- Verify database permissions.
+- Verify backup configuration.
+- Verify recovery instructions.
+
+If using Neon or another managed PostgreSQL provider, follow its official production recommendations.
+
+Do not expose database credentials.
+
+Do not run schema resets against production.
+
+Do not automatically execute unreviewed destructive migrations.
+
+---
+
+# 8. PRODUCTION SECURITY AUDIT
+
+Conduct a final security review.
+
+### Application security
+
+- Authentication enforcement.
+- Role-based access control.
+- Server-side authorization.
+- Input validation.
+- Output sanitization.
+- Session security.
+- Secure cookies.
+- CSRF protections where applicable.
+- Rate limiting.
+- Safe file uploads.
+- Secure API error handling.
+- Sensitive data protection.
+
+### HTTP security
+
+Review appropriate configuration for:
+
+- HTTPS.
+- Strict-Transport-Security.
+- Content-Security-Policy.
+- X-Content-Type-Options.
+- Referrer-Policy.
+- Permissions-Policy.
+- Frame protection.
+
+Configure policies carefully to preserve legitimate 3D rendering, media, authentication and external integrations.
+
+Do not blindly apply a restrictive Content-Security-Policy that breaks the website.
+
+### Dependency security
+
+- Inspect dependency versions.
+- Run available security audits.
+- Identify critical vulnerabilities.
+- Review outdated packages.
+- Remove unnecessary dependencies.
+- Avoid breaking upgrades without testing.
+
+Do not claim that the application is completely secure.
+
+Document remaining security risks.
+
+---
+
+# 9. SEO AND PUBLIC WEBSITE READINESS
+
+Prepare the public website for search engines and sharing.
+
+Review:
+
+- Page titles.
+- Meta descriptions.
+- Canonical URLs.
+- Open Graph metadata.
+- Social sharing images.
+- Sitemap.
+- Robots.txt.
+- Favicon.
+- Web manifest where appropriate.
+- Structured data where appropriate.
+- Dynamic page metadata.
+- Missing metadata.
+- Broken public links.
+
+### Pages to review
+
+- Homepage.
+- Game modes.
+- Players.
+- Teams.
+- Stadium.
+- Events.
+- News.
+- Media.
+- Community.
+- Support.
+
+### Requirements
+
+- Unique page titles.
+- Relevant descriptions.
+- Proper heading hierarchy.
+- Correct canonical URLs.
+- Valid sitemap.
+- Appropriate indexing rules.
+
+Prevent private profiles, admin pages and restricted routes from being unintentionally indexed.
+
+Do not publish fake business or product structured data.
+
+---
+
+# 10. DOMAIN AND HTTPS CONFIGURATION
+
+Prepare the application for a custom domain.
+
+If a domain is already available:
+
+- Inspect its DNS configuration.
+- Configure the hosting provider.
+- Verify domain ownership.
+- Configure HTTPS.
+- Verify redirects.
+- Verify canonical host.
+- Verify www/non-www behaviour.
+- Verify application callback URLs.
+
+If no domain is available:
+
+- Use the hosting provider's assigned preview or production domain where deployment is permitted.
+- Document how to connect a custom domain later.
+
+Do not purchase a domain without approval.
+
+Do not invent a live website URL.
+
+---
+
+# 11. DEPLOYMENT CONFIGURATION
+
+Inspect the existing deployment setup.
+
+If Vercel is the chosen platform, verify:
+
+- Project configuration.
+- Framework detection.
+- Build command.
+- Install command.
+- Output configuration.
+- Environment variables.
+- Deployment settings.
+- Serverless function compatibility.
+- Image optimization.
+- Domain configuration.
+
+If another host is already configured, preserve it and follow its documented deployment architecture.
+
+### Deployment workflow
+
+Prepare a safe workflow:
+
+1. Run lint.
+2. Run automated tests.
+3. Run production build.
+4. Verify required environment variables.
+5. Review migrations.
+6. Create a deployment-ready commit.
+7. Deploy to preview or staging.
+8. Test preview.
+9. Review deployment logs.
+10. Obtain approval before production deployment if production deployment is not explicitly authorized.
+11. Deploy production.
+12. Verify the deployed website.
+
+Never claim deployment succeeded unless the hosting provider confirms it.
+
+---
+
+# 12. CI/CD AND GITHUB INTEGRATION
+
+Inspect the existing GitHub repository and workflow.
+
+If GitHub Actions is already configured, improve it without creating duplicate workflows.
+
+If no suitable workflow exists, create a basic CI workflow.
+
+Suggested checks:
+
+- Dependency installation.
+- ESLint.
+- Automated tests.
+- Production build.
+- Dependency security audit where appropriate.
+
+### Git requirements
+
+- Check `.gitignore`.
+- Check tracked environment files.
+- Check accidental secrets.
+- Check build artifacts.
+- Check large binary assets.
+- Check repository status.
+- Check current branch.
+- Check uncommitted changes.
+
+Do not delete existing Git history.
+
+Do not force-push.
+
+Do not overwrite remote work.
+
+Do not commit or push changes without authorization.
+
+Provide clear Git commands if a user action is required.
+
+---
+
+# 13. BACKUP AND DISASTER RECOVERY
+
+Create a practical recovery plan.
+
+Document:
+
+- Database backup method.
+- Backup frequency.
+- Retention policy.
+- Recovery procedure.
+- Migration rollback strategy.
+- File storage recovery.
+- Environment variable recovery.
+- Deployment rollback.
+- Incident response.
+
+Verify what the database provider actually supports.
+
+Do not claim a backup exists unless it has been configured or verified.
+
+Never store database passwords in backup documentation.
+
+---
+
+# 14. MONITORING AND ERROR TRACKING
+
+Prepare production monitoring.
+
+Inspect available services and choose only what is appropriate.
+
+Potential options:
+
+- Vercel logs.
+- Sentry.
+- Existing monitoring provider.
+- PostgreSQL provider monitoring.
+- Existing analytics platform.
+
+### Monitor
+
+- Server errors.
+- API failures.
+- Database connection failures.
+- External API failures.
+- Authentication failures.
+- Deployment errors.
+- Slow page loads.
+- 3D loading failures.
+- JavaScript runtime errors.
+
+### Requirements
+
+- Useful error messages.
+- Request IDs where available.
+- No secret leakage.
+- No unnecessary personal data.
+- Clear error severity.
+- Actionable monitoring documentation.
+
+Do not add multiple overlapping monitoring services without a reason.
+
+---
+
+# 15. PRODUCTION SMOKE TESTING
+
+After deployment, test the actual deployed application.
+
+### Public website
+
+- Homepage loads.
+- Logo and branding display correctly.
+- Navigation works.
+- Game modes load.
+- Players load.
+- Teams load.
+- Stadium page loads.
+- Events load.
+- News loads.
+- Media loads.
+- Support page loads.
+
+### User journey
+
+1. Open the deployed website.
+2. Register or log in.
+3. Open the profile.
+4. Update profile details.
+5. Browse players.
+6. Browse teams.
+7. Create a squad.
+8. Select a formation.
+9. Add players.
+10. Save the squad.
+11. Refresh the page.
+12. Verify saved squad persistence.
+13. Browse events.
+14. Open news.
+15. Test supported AI functionality.
+
+### Admin journey
+
+- Open admin dashboard.
+- Verify authorized access.
+- Test permitted content management.
+- Verify role restrictions.
+- Verify audit logs.
+- Verify integrations status.
+
+### Technical checks
+
+- No critical browser console errors.
+- No failed critical network requests.
+- No broken images.
+- No hydration errors.
+- No unexpected redirects.
+- No authentication loop.
+- No missing environment variables.
+
+Use authorized test accounts.
+
+Do not create unnecessary real customer records.
+
+---
+
+# 16. MOBILE AND LOW-END DEVICE TESTING
+
+Test the production deployment on:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Android mobile.
+- Low-end mobile simulation where available.
+
+Verify:
+
+- Responsive navigation.
+- Homepage layout.
+- Image loading.
+- Font rendering.
+- Touch interactions.
+- Squad builder usability.
+- 3D fallbacks.
+- Loading behaviour.
+- Page performance.
+- Network failure handling.
+
+The core website must remain usable on low-end devices and slower network connections.
+
+---
+
+# 17. FINAL BUG FIXING
+
+Create a final production-readiness bug report.
+
+Classify defects:
+
+**P0 – Critical**
+- Production build failure.
+- Security breach.
+- Data corruption.
+- Authentication failure.
+- Application unavailable.
+
+**P1 – High**
+- Core functionality broken.
+- Database connection failure.
+- Squad persistence failure.
+- Major API failure.
+- Production deployment failure.
+
+**P2 – Medium**
+- Performance bottlenecks.
+- Responsive defects.
+- External integration problems.
+- Non-critical feature failures.
+
+**P3 – Low**
+- Minor visual defects.
+- Small spacing issues.
+- Non-critical polish.
+
+Fix all P0 and P1 defects before production release.
+
+Fix important P2 issues where practical.
+
+Do not hide unresolved defects.
+
+---
+
+# 18. FINAL DOCUMENTATION
+
+Create or update:
+
+`docs/PRODUCTION_READINESS_REPORT.md`
+
+`docs/PRODUCTION_DEPLOYMENT_GUIDE.md`
+
+`docs/ENVIRONMENT_CONFIGURATION_GUIDE.md`
+
+`docs/SECURITY_PRODUCTION_CHECKLIST.md`
+
+`docs/PERFORMANCE_OPTIMIZATION_REPORT.md`
+
+`docs/CORE_WEB_VITALS_REPORT.md`
+
+`docs/SEO_AND_METADATA_AUDIT.md`
+
+`docs/DOMAIN_AND_HTTPS_SETUP.md`
+
+`docs/CI_CD_DEPLOYMENT_GUIDE.md`
+
+`docs/DATABASE_BACKUP_AND_RECOVERY.md`
+
+`docs/MONITORING_AND_ERROR_TRACKING.md`
+
+`docs/PRODUCTION_SMOKE_TEST_REPORT.md`
+
+`docs/FINAL_BUG_TRACKER.md`
+
+`docs/DEVELOPMENT_ROADMAP.md`
+
+`docs/PROJECT_TASK_TRACKER.md`
+
+Also create or update:
+
+`README.md`
+
+The README must include:
+
+- Project overview.
+- Technology stack.
+- Prerequisites.
+- Installation instructions.
+- Development commands.
+- Environment setup.
+- Database setup.
+- Testing commands.
+- Production build.
+- Deployment instructions.
+- Project structure.
+- Important documentation links.
+
+Do not put real credentials in README or any documentation.
+
+---
+
+# 19. FINAL ACCEPTANCE CRITERIA
+
+- [ ] Complete project inspected.
+- [ ] Production environment configured.
+- [ ] Environment variables documented.
+- [ ] Secrets protected.
+- [ ] Production build successful.
+- [ ] ESLint successful.
+- [ ] Automated tests successful.
+- [ ] Frontend performance optimized.
+- [ ] Images optimized.
+- [ ] Fonts optimized.
+- [ ] Three.js assets optimized.
+- [ ] Core Web Vitals measured.
+- [ ] Database production configuration verified.
+- [ ] API security reviewed.
+- [ ] Dependency security reviewed.
+- [ ] SEO completed.
+- [ ] Domain and HTTPS configuration reviewed.
+- [ ] Deployment configuration verified.
+- [ ] CI/CD checked.
+- [ ] Backup and recovery documented.
+- [ ] Monitoring prepared.
+- [ ] Production smoke tests performed where deployed.
+- [ ] Mobile and low-end device testing completed.
+- [ ] Critical bugs fixed.
+- [ ] Documentation completed.
+
+---
+
+# 20. FINAL REPORT
+
+After completing this phase, provide:
+
+1. Phase 25 completion status.
+2. Production architecture summary.
+3. Hosting provider.
+4. Build results.
+5. ESLint results.
+6. Automated test results.
+7. Frontend performance measurements.
+8. Core Web Vitals measurements.
+9. Three.js optimization results.
+10. Database production-readiness results.
+11. Security audit summary.
+12. Dependency audit results.
+13. SEO results.
+14. Domain and HTTPS status.
+15. CI/CD status.
+16. Backup and recovery status.
+17. Monitoring status.
+18. Deployment status.
+19. Live website URL, only if successfully deployed and verified.
+20. Production smoke test results.
+21. Remaining bugs.
+22. Remaining configuration requirements.
+23. Files created and modified.
+24. Final production-readiness assessment.
+
+Use these exact status distinctions:
+
+- READY FOR PRODUCTION.
+- READY AFTER CONFIGURATION.
+- DEPLOYED AND VERIFIED.
+- NOT READY – CRITICAL ISSUES REMAIN.
+
+A successful local build does not mean the website has been deployed.
+
+A successful deployment does not mean all functionality has been verified.
+
+Report the actual state honestly.
+
+---
+
+# 21. ORIGINAL 25-PHASE ROADMAP COMPLETION
+
+After Phase 25, review the original development roadmap.
+
+Verify all 25 phases:
+
+01. Frontend Foundation.
+02. Website Layout.
+03. Homepage Development.
+04. Inner Pages Development.
+05. Interactive Frontend.
+06. Brand Identity and Design System.
+07. Advanced UI/UX and Responsive Design.
+08. UI Animation System.
+09. 3D Animation System.
+10. Cinematic Animation System.
+11. Backend Foundation.
+12. Authentication System.
+13. User Profile System.
+14. Player and Team Management.
+15. Game Modes and Squad Services.
+16. Events, News and Media Management.
+17. Admin and Security System.
+18. Database Architecture and Schema.
+19. Database Implementation.
+20. Database Operations and Security.
+21. Internal API Integration.
+22. External API Integration.
+23. Frontend and UI Testing.
+24. Backend, Database and API Testing.
+25. Final Performance and Deployment Testing.
+
+### Roadmap verification rules
+
+- Verify actual files and implementation.
+- Check each phase's acceptance criteria.
+- Do not mark unfinished phases as complete.
+- Record any remaining work.
+- Preserve the original 25-phase history.
+- Do not automatically begin expansion phases.
+
+Create a final document:
+
+`docs/PROJECT_COMPLETION_REPORT.md`
+
+This report must explain the actual state of RIVALRY 90 after the original roadmap.
+
+---
+
+# 22. IMPORTANT: NEXT DEVELOPMENT STAGE
+
+After completing the original 25 phases, the next stage will be a separate 10-phase expansion.
+
+**RIVALRY 90 – FOOTBALL UNIVERSE EXPANSION**
+
+The expansion phases are:
+
+1. Complete Football Player Universe.
+2. 3D Stadium Universe.
+3. Clubs and National Teams.
+4. Game Modes and Match Experience.
+5. Events and Tournament Universe.
+6. Squad Builder and Transfer Market.
+7. Career, Manager and Training System.
+8. Cinematic 3D Animations and Matchday Atmosphere.
+9. Community, Media and Football World.
+10. AI, Advanced Features and Final Integration.
+
+These are additional phases, not replacements for the original 25 phases.
+
+Do not begin them in this phase.
+
+First complete and verify the original 25-phase roadmap.
+
+---
+
+# 23. STRICT FINAL INSTRUCTION
+
+This is Phase 25 – Final Performance and Deployment Testing.
+
+Complete the implementation, testing, documentation and final production-readiness report.
+
+If deployment credentials are unavailable, finish the deployment preparation and clearly explain the remaining manual steps.
+
+If a critical issue remains, report that the project is not ready for production.
+
+Do not fabricate deployment success.
+

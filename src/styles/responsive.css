@@ -1,0 +1,12 @@
+.r90-pitch-grid {
+  background-image:
+    linear-gradient(to right, rgba(245, 244, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 244, 238, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@media (max-width: 767px) {
+  .r90-pitch-grid {
+    background-size: 32px 32px;
+  }
+}

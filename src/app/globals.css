@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import '../styles/tokens.css';
+@import '../styles/animations.css';
+@import '../styles/3d.css';
+@import '../styles/responsive.css';
+
+@theme inline {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Barlow Condensed', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --color-background: var(--r90-bg-primary);
+  --color-foreground: var(--r90-text-primary);
+  --color-lime-accent: var(--r90-accent-lime);
+  --color-orange-accent: var(--r90-accent-orange);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--r90-bg-primary);
+  color: var(--r90-text-primary);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(16, 23, 19, 0.72), transparent 46%),
+    radial-gradient(circle at 85% 15%, rgba(198, 255, 61, 0.05), transparent 36%),
+    var(--r90-bg-primary);
+  color: var(--r90-text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--r90-accent-lime);
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: var(--r90-accent-lime);
+  color: #080b09;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--r90-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--r90-border-default);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--r90-accent-lime);
+}
+
+/* Reusable Design System Classes */
+.r90-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1400px;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .r90-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .r90-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+.r90-card {
+  background-color: var(--r90-bg-card);
+  border: 1px solid var(--r90-border-default);
+  border-radius: var(--r90-radius-lg);
+}
+
+.r90-glass {
+  background-color: var(--r90-bg-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--r90-border-subtle);
+}
+
+.r90-accent-text {
+  color: var(--r90-accent-lime);
+}

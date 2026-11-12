@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" fill="none">
+  <rect width="48" height="48" x="4" y="4" rx="10" fill="#C6FF3D"/>
+  <path d="M16 38V18h12.2c4.8 0 7.8 2.6 7.8 6.8 0 3.2-1.8 5.6-5.1 6.4L37 38h-5.8l-5.6-4.8h-4.1V38H16Zm5.5-9.2h6.3c1.9 0 3-.9 3-2.5s-1.1-2.5-3-2.5h-6.3v5Z" fill="#080B09"/>
+  <text x="66" y="38" fill="#F5F7F2" font-family="Arial Narrow, Impact, sans-serif" font-size="30" font-weight="800" letter-spacing="2">RIVALRY <tspan fill="#C6FF3D">90</tspan></text>
+</svg>
+

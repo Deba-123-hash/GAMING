@@ -1,0 +1,1675 @@
+# RIVALRY 90 – PHASE 18: DATABASE ARCHITECTURE AND SCHEMA
+
+## ROLE
+
+Act as a Senior Database Architect, PostgreSQL Specialist, Data Modelling Engineer, Backend Architect and SaaS Infrastructure Designer.
+
+You are working on my existing project:
+
+**Project:** RIVALRY 90  
+**Current Phase:** 18 – Database Architecture and Schema  
+**Frontend:** Next.js + React  
+**Backend:** Next.js Route Handlers  
+**Language:** JavaScript + JSX ONLY  
+**Database:** Existing database provider and PostgreSQL architecture, if already configured  
+**Authentication:** Existing Phase 12 system  
+**User Profiles:** Phase 13  
+**Players and Teams:** Phase 14  
+**Game Modes and Squads:** Phase 15  
+**Events, News and Media:** Phase 16  
+**Administration and Security:** Phase 17
+
+Your mission is to design a complete, enterprise-quality PostgreSQL database architecture for the RIVALRY 90 football gaming universe.
+
+This phase is primarily database planning, schema design, relationship modelling, constraints, indexes, migration planning and documentation.
+
+Do not blindly modify or reset the existing production database.
+
+Do not just write theoretical explanations. Inspect the actual project and create detailed database architecture documentation and schema files.
+
+---
+
+# 1. INSPECT THE EXISTING PROJECT
+
+Before designing anything:
+
+1. Inspect the complete project structure.
+2. Read all existing documentation from Phases 01–17.
+3. Inspect the existing database provider.
+4. Identify whether PostgreSQL, Neon, Supabase or another provider is configured.
+5. Inspect the database connection architecture.
+6. Inspect existing schema files.
+7. Inspect migrations.
+8. Inspect authentication tables.
+9. Inspect user profile tables.
+10. Inspect player and team tables.
+11. Inspect squad tables.
+12. Inspect events and news tables.
+13. Inspect media tables.
+14. Inspect admin roles and permissions.
+15. Inspect audit logs.
+16. Identify duplicated entities.
+17. Identify missing relationships.
+18. Identify database security problems.
+
+### Strict rules
+
+- Preserve existing data.
+- Never reset the production database.
+- Never expose database credentials.
+- Never create duplicate tables unnecessarily.
+- Reuse existing database entities.
+- Use PostgreSQL-compatible architecture.
+- Use JavaScript only for application integration.
+- Do not create TypeScript files.
+- Do not install unnecessary packages.
+- Do not implement the entire database yet.
+- Do not start Phase 19 automatically.
+
+---
+
+# 2. DATABASE ARCHITECTURE DESIGN
+
+Design a complete relational database architecture.
+
+The database must support:
+
+- User accounts.
+- User profiles.
+- Authentication relationships.
+- Player universe.
+- Football teams.
+- Team rosters.
+- National teams.
+- Player ratings.
+- Game modes.
+- Squad builder.
+- Squad formations.
+- Squad players.
+- Events.
+- Event registrations.
+- News articles.
+- News categories.
+- Media gallery.
+- Media collections.
+- Admin roles.
+- Permissions.
+- Audit logs.
+- Security events.
+- Platform settings.
+
+### Architecture requirements
+
+- Relational database design.
+- Clear entity relationships.
+- Normalized schema.
+- Referential integrity.
+- Appropriate indexes.
+- Secure data access.
+- Scalable query patterns.
+- Consistent naming conventions.
+- Migration-friendly structure.
+- Transaction-safe operations.
+
+Document the complete architecture before implementation.
+
+---
+
+# 3. DATABASE ENTITY GROUPS
+
+Organize the schema into logical domains.
+
+### A. Identity and user domain
+
+Possible tables:
+
+- users.
+- user_profiles.
+- user_settings.
+- user_privacy_settings.
+- user_sessions, only if managed by the application rather than the authentication provider.
+- user_roles.
+- roles.
+- permissions.
+- role_permissions.
+
+Important: If authentication is managed by Supabase, Clerk or another provider, do not recreate its internal password or session tables.
+
+Store only the necessary application relationships and provider identifiers.
+
+### B. Football player domain
+
+Possible tables:
+
+- players.
+- player_attributes.
+- player_ratings.
+- player_positions.
+- player_career_history.
+- player_media.
+
+Design a system for:
+
+- Player identity.
+- Position.
+- Overall rating.
+- Pace.
+- Shooting.
+- Passing.
+- Dribbling.
+- Defending.
+- Physicality.
+- Technical attributes.
+- Player development.
+
+Keep player ratings separate from player identity where it improves data management.
+
+### C. Football team domain
+
+Possible tables:
+
+- teams.
+- team_members.
+- team_rosters.
+- team_competitions, if required later.
+- team_media.
+- team_statistics, if actual statistics are supported.
+
+Support:
+
+- Fictional clubs.
+- National teams.
+- Team type.
+- Team information.
+- Squad relationships.
+- Team artwork.
+
+Avoid unnecessary duplication of team and player information.
+
+### D. Game mode domain
+
+Possible tables:
+
+- game_modes.
+- game_mode_categories.
+- game_mode_settings.
+
+Support:
+
+- Quick Match.
+- Career Mode.
+- Tournament Mode.
+- Manager Mode.
+- Training Mode.
+- Penalty Challenge.
+- Practice Arena.
+
+The database must not imply that a playable game engine exists when only the website catalogue is available.
+
+### E. Squad builder domain
+
+Possible tables:
+
+- squads.
+- squad_players.
+- formations.
+- formation_positions.
+- squad_tactics.
+- squad_substitutes, only if separate storage is genuinely needed.
+
+Support:
+
+- Squad owner.
+- Squad name.
+- Formation.
+- Starting lineup.
+- Substitutes.
+- Captain.
+- Player positions.
+- Squad rating.
+- Creation and update timestamps.
+
+Prevent the same player being assigned twice to the same squad.
+
+Support multiple squads per user.
+
+### F. Events domain
+
+Possible tables:
+
+- events.
+- event_categories.
+- event_registrations.
+- event_rewards, if needed.
+- event_media.
+
+Support:
+
+- Event information.
+- Event dates.
+- Event status.
+- Registration deadlines.
+- Eligibility.
+- Rewards.
+- Publication status.
+
+### G. News domain
+
+Possible tables:
+
+- articles.
+- article_categories.
+- article_tags.
+- tags.
+- article_tag_relationships.
+- article_authors, only if not represented by existing users.
+- article_media.
+
+Support:
+
+- Draft articles.
+- Published articles.
+- Scheduled articles.
+- Archived articles.
+- SEO information.
+- Author relationship.
+- Featured content.
+
+### H. Media domain
+
+Possible tables:
+
+- media_assets.
+- media_categories.
+- media_collections.
+- collection_media.
+- media_attributions.
+
+Support:
+
+- Image records.
+- Video records.
+- Thumbnails.
+- Captions.
+- Alt text.
+- Asset URLs.
+- Storage provider identifiers.
+- Licensing and attribution information.
+
+Do not store large video or image binary data directly in PostgreSQL unless there is a justified technical reason.
+
+### I. Administration and security domain
+
+Possible tables:
+
+- roles.
+- permissions.
+- role_permissions.
+- user_roles.
+- audit_logs.
+- security_events.
+- platform_settings.
+
+Reuse existing Phase 17 entities.
+
+Avoid duplicate role and permission systems.
+
+---
+
+# 4. ENTITY RELATIONSHIP DESIGN
+
+Create a complete ER diagram.
+
+The diagram must represent the relationships between:
+
+- Users and profiles.
+- Users and roles.
+- Roles and permissions.
+- Users and squads.
+- Squads and players.
+- Players and teams.
+- Teams and players.
+- Events and registrations.
+- Users and registrations.
+- Articles and categories.
+- Articles and authors.
+- Articles and tags.
+- Media and categories.
+- Media and collections.
+- Admin users and audit logs.
+
+Use Mermaid ER diagram syntax.
+
+Create:
+
+`docs/DATABASE_ER_DIAGRAM.md`
+
+Include:
+
+1. Complete ER diagram.
+2. Entity descriptions.
+3. Primary keys.
+4. Foreign keys.
+5. One-to-one relationships.
+6. One-to-many relationships.
+7. Many-to-many relationships.
+8. Cascading rules.
+9. Referential integrity rules.
+
+Make sure the diagram matches the proposed schema.
+
+---
+
+# 5. POSTGRESQL NAMING CONVENTIONS
+
+Establish a consistent database naming system.
+
+Use:
+
+- Snake_case table names.
+- Snake_case column names.
+- `id` as primary key.
+- Explicit foreign key names.
+- Consistent timestamp names.
+- Consistent status fields.
+- Clear index names.
+
+Example:
+
+`users`
+
+- id
+- email
+- username
+- created_at
+- updated_at
+
+`players`
+
+- id
+- name
+- position
+- overall_rating
+- created_at
+- updated_at
+
+Use UUID primary keys where appropriate.
+
+Do not mix naming conventions.
+
+Document all conventions.
+
+---
+
+# 6. COLUMN TYPES AND CONSTRAINTS
+
+Define proper PostgreSQL data types.
+
+Use appropriate types such as:
+
+- UUID.
+- VARCHAR.
+- TEXT.
+- INTEGER.
+- SMALLINT.
+- BOOLEAN.
+- NUMERIC.
+- DATE.
+- TIMESTAMPTZ.
+- JSONB only for genuinely flexible structures.
+- ENUM or validated text/check constraints where appropriate.
+
+### Constraints
+
+Examples:
+
+- Unique email where applicable.
+- Unique username.
+- Unique article slug.
+- Unique event slug.
+- Unique player slug where needed.
+- Ratings between 1 and 99.
+- Valid player positions.
+- Valid event dates.
+- Valid publication status.
+- Unique user-role relationship.
+- Unique role-permission relationship.
+- Unique event registration per user.
+- Unique player per squad.
+
+Define `NOT NULL`, `UNIQUE`, `CHECK`, primary key and foreign key constraints.
+
+Do not rely only on frontend validation.
+
+---
+
+# 7. SQUAD AND FORMATION DATA MODEL
+
+Design the squad system carefully.
+
+Support formations:
+
+- 4-3-3.
+- 4-4-2.
+- 4-2-3-1.
+- 3-5-2.
+- 5-3-2.
+- 4-1-4-1.
+- 4-3-2-1.
+- 3-4-3.
+- 4-5-1.
+- 5-4-1.
+
+### Squad requirements
+
+Each squad must support:
+
+- Owner.
+- Name.
+- Formation.
+- Starting XI.
+- Substitutes.
+- Captain.
+- Player positions.
+- Player assignment.
+- Squad rating.
+- Tactical configuration.
+
+Use a normalized relationship between squads and players.
+
+Define how formation positions are stored.
+
+Define how a player is mapped to a formation slot.
+
+Define constraints preventing:
+
+- Duplicate player assignments.
+- More than 11 starting players.
+- Invalid formation slots.
+- Multiple captains.
+- Invalid substitute assignments.
+
+Keep squad calculations in the application or a clearly defined database function only where justified.
+
+---
+
+# 8. PLAYER AND TEAM RELATIONSHIP MODEL
+
+Design player-team relationships.
+
+Support:
+
+- Current team.
+- Historical team relationships if required.
+- Player squad membership.
+- Team roster.
+- Team type.
+- National teams.
+- Fictional club teams.
+
+Define whether current team is stored directly on the player or represented through a roster relationship.
+
+Choose the cleanest design based on the existing project.
+
+Avoid conflicting sources of truth.
+
+Document transfer-history support as future-ready only if the current project does not implement transfers.
+
+---
+
+# 9. EVENT AND NEWS RELATIONSHIP MODEL
+
+### Events
+
+Define:
+
+- Event categories.
+- Event status.
+- Event registration.
+- User registration.
+- Registration deadlines.
+- Event publication status.
+
+Prevent duplicate registrations.
+
+Use appropriate unique constraints.
+
+### News
+
+Define:
+
+- Article authors.
+- Article categories.
+- Article tags.
+- Article media.
+- Article publication lifecycle.
+
+Support scheduled publication using timestamp fields.
+
+Do not build an unnecessary background scheduler during this phase.
+
+Document how future scheduling will work.
+
+---
+
+# 10. MEDIA DATABASE DESIGN
+
+Design media records around external object storage.
+
+Store:
+
+- Asset ID.
+- Storage provider.
+- Storage key.
+- Public URL where appropriate.
+- Media type.
+- File name.
+- MIME type.
+- File size.
+- Width.
+- Height.
+- Duration.
+- Alt text.
+- Caption.
+- Attribution.
+- License information.
+- Publication status.
+
+Support media attribution and licensing records.
+
+Never assume that an externally hosted asset is licensed for commercial use.
+
+---
+
+# 11. ADMIN AND SECURITY DATA MODEL
+
+Design:
+
+- Roles.
+- Permissions.
+- User-role relationships.
+- Role-permission relationships.
+- Audit logs.
+- Security events.
+- Platform settings.
+
+### Audit log structure
+
+Include:
+
+- Actor user ID.
+- Actor role snapshot where appropriate.
+- Action.
+- Entity type.
+- Entity ID.
+- Timestamp.
+- Outcome.
+- Request ID.
+- Safe metadata.
+
+Avoid storing:
+
+- Passwords.
+- Authentication tokens.
+- Secret keys.
+- Full session credentials.
+- Unnecessary personal information.
+
+Define retention and indexing strategies.
+
+---
+
+# 12. INDEXING AND QUERY OPTIMIZATION PLAN
+
+Prepare a detailed index strategy.
+
+Consider:
+
+### Users
+
+- Email lookup.
+- Username lookup.
+- Role filtering.
+- Registration date.
+
+### Players
+
+- Name search.
+- Position filtering.
+- Rating sorting.
+- Team filtering.
+
+### Teams
+
+- Name search.
+- Team type.
+- Roster lookup.
+
+### Squads
+
+- Owner lookup.
+- Formation filtering.
+- Updated date.
+
+### Events
+
+- Slug lookup.
+- Status.
+- Category.
+- Start date.
+- Publication status.
+
+### News
+
+- Slug.
+- Category.
+- Published date.
+- Publication status.
+- Author.
+
+### Media
+
+- Category.
+- Media type.
+- Publication status.
+- Featured status.
+
+### Audit logs
+
+- Actor.
+- Action.
+- Entity.
+- Timestamp.
+
+Avoid unnecessary indexes.
+
+Explain how each index supports actual query patterns.
+
+For text search, evaluate PostgreSQL full-text search and suitable indexes before introducing a separate search service.
+
+---
+
+# 13. DATABASE SECURITY ARCHITECTURE
+
+Design database security around least privilege.
+
+Include:
+
+- Secure database credentials.
+- Environment variable configuration.
+- Connection pooling.
+- Restricted database roles.
+- Parameterized queries.
+- Transaction management.
+- Server-side authorization.
+- Sensitive field protection.
+- Backup strategy.
+- Migration safety.
+
+If Supabase is used:
+
+- Review Row Level Security.
+- Define appropriate policies.
+- Do not expose service-role keys to the browser.
+
+If Neon or standard PostgreSQL is used:
+
+- Design server-side connection access.
+- Use restricted database credentials.
+- Keep the connection string server-only.
+- Do not expose database URLs in client bundles.
+
+Do not assume RLS exists unless it is actually configured.
+
+Document the provider-specific security model.
+
+---
+
+# 14. MIGRATION ARCHITECTURE
+
+Design a safe migration strategy for Phase 19.
+
+Include:
+
+- Initial schema migration.
+- Table creation order.
+- Foreign key creation.
+- Index creation.
+- Constraint creation.
+- Seed data migration.
+- Rollback considerations.
+- Existing data preservation.
+- Schema version tracking.
+
+Inspect the existing migration tool.
+
+Reuse it if already configured.
+
+Do not introduce a second migration system unnecessarily.
+
+Document how development, staging and production migrations should be applied.
+
+Never automatically drop existing tables.
+
+---
+
+# 15. SEED DATA ARCHITECTURE
+
+Design seed data for development.
+
+Prepare:
+
+- 30 fictional football players.
+- 6 fictional clubs.
+- 4 fictional national teams.
+- 10 football formations.
+- 7 game modes.
+- 6 fictional events.
+- 10 fictional news articles.
+- 12 media metadata records.
+- Initial application roles.
+- Initial permission definitions.
+
+### Rules
+
+- Use fictional names and identities.
+- No copied player likenesses.
+- No copyrighted club logos.
+- No fake real-world announcements.
+- Make seed scripts deterministic.
+- Prevent duplicate seeding.
+- Never automatically seed production with demo content.
+
+Document the seed process.
+
+---
+
+# 16. DATABASE DOCUMENTATION FILES
+
+Create or update these files:
+
+1. `docs/DATABASE_ARCHITECTURE.md`
+2. `docs/DATABASE_ER_DIAGRAM.md`
+3. `docs/DATABASE_SCHEMA_REFERENCE.md`
+4. `docs/DATABASE_RELATIONSHIPS.md`
+5. `docs/DATABASE_NAMING_CONVENTIONS.md`
+6. `docs/DATABASE_CONSTRAINTS.md`
+7. `docs/DATABASE_INDEXING_STRATEGY.md`
+8. `docs/DATABASE_SECURITY_ARCHITECTURE.md`
+9. `docs/DATABASE_MIGRATION_STRATEGY.md`
+10. `docs/DATABASE_SEED_DATA_PLAN.md`
+11. `docs/DATABASE_BACKUP_AND_RECOVERY.md`
+12. `docs/DATABASE_QUERY_PATTERNS.md`
+13. `docs/DEVELOPMENT_ROADMAP.md`
+14. `docs/PROJECT_TASK_TRACKER.md`
+
+Create a database schema directory appropriate to the existing architecture.
+
+For example:
+
+`database/`
+
+- schema/
+- migrations/
+- seeds/
+- diagrams/
+- README.md
+
+Do not create duplicate folders if the project already has an established structure.
+
+---
+
+# 17. SCHEMA VALIDATION
+
+Validate the proposed schema.
+
+Check:
+
+- Every entity has a primary key.
+- Every relationship has a clear foreign key.
+- Many-to-many relationships use junction tables.
+- No unnecessary duplicate columns.
+- No conflicting sources of truth.
+- Unique constraints are correct.
+- Cascading deletion is safe.
+- Required indexes exist.
+- Sensitive information is protected.
+- Schema names are consistent.
+- Mermaid ER diagram matches schema definitions.
+- Existing application services can map to the design.
+
+If a database is connected, use read-only inspection where possible.
+
+Do not execute destructive changes.
+
+---
+
+# 18. STRICT PHASE BOUNDARY
+
+This phase is Database Architecture and Schema Design.
+
+Do not:
+
+- Drop existing tables.
+- Reset the production database.
+- Run destructive migrations.
+- Rewrite every backend service.
+- Change authentication providers.
+- Replace the existing database provider.
+- Build a new frontend dashboard.
+- Introduce unnecessary ORM or database libraries.
+- Start database implementation without my approval.
+
+The next phases are:
+
+**Phase 19 – Database Implementation.**
+
+**Phase 20 – Database Operations and Security.**
+
+Phase 19 will turn the approved architecture into actual database migrations and working tables.
+
+Phase 20 will focus on database operations, security, optimization, backups and reliability.
+
+Do not automatically begin either phase.
+
+---
+
+# 19. FINAL ACCEPTANCE CRITERIA
+
+- [ ] Existing database inspected.
+- [ ] All application domains mapped.
+- [ ] Complete schema documented.
+- [ ] ER diagram created.
+- [ ] User relationships designed.
+- [ ] Player and team relationships designed.
+- [ ] Squad and formation relationships designed.
+- [ ] Events and registrations designed.
+- [ ] News and media relationships designed.
+- [ ] Admin and permission relationships designed.
+- [ ] PostgreSQL data types defined.
+- [ ] Constraints documented.
+- [ ] Indexing strategy documented.
+- [ ] Security architecture documented.
+- [ ] Migration plan documented.
+- [ ] Seed data plan documented.
+- [ ] Existing data preservation verified.
+- [ ] Schema consistency validated.
+- [ ] Documentation updated.
+- [ ] No destructive database changes executed.
+
+---
+
+# 20. FINAL REPORT
+
+After completion, provide:
+
+1. Phase 18 status.
+2. Existing database provider.
+3. Existing schema inspection findings.
+4. Complete table inventory.
+5. New proposed tables.
+6. Existing tables reused.
+7. Entity relationship summary.
+8. ER diagram location.
+9. Primary and foreign key strategy.
+10. Constraints.
+11. Indexing strategy.
+12. Squad and formation design.
+13. Player and team relationship design.
+14. Events and news relationship design.
+15. Media storage architecture.
+16. Admin and security schema.
+17. Migration strategy.
+18. Seed data plan.
+19. Security recommendations.
+20. Remaining questions or architectural decisions.
+
+Clearly distinguish existing implemented schema from proposed schema.
+
+Do not claim the database has been implemented during this architecture phase.
+
+# RIVALRY 90 – PHASE 20: DATABASE OPERATIONS AND SECURITY
+
+## ROLE
+
+Act as a Senior PostgreSQL Database Administrator, Database Security Engineer, Performance Optimization Specialist, DevOps Engineer and Production Reliability Architect.
+
+You are working on my existing project:
+
+**Project:** RIVALRY 90  
+**Current Phase:** 20 – Database Operations and Security  
+**Frontend:** Next.js + React  
+**Backend:** Next.js Route Handlers  
+**Language:** JavaScript + JSX ONLY  
+**Database:** Existing PostgreSQL provider  
+**Database Architecture:** Phase 18  
+**Database Implementation:** Phase 19
+
+Your mission is to make the existing database secure, reliable, efficient, maintainable and production-ready.
+
+You must inspect the actual database implementation, identify weaknesses, improve the real project files and verify the results.
+
+Do not just provide theoretical recommendations.
+
+---
+
+# 1. COMPLETE DATABASE AUDIT
+
+Before making changes, inspect:
+
+1. Complete project structure.
+2. Phase 18 database architecture.
+3. Phase 19 database implementation.
+4. Database connection configuration.
+5. Existing migrations.
+6. Database tables.
+7. Primary and foreign keys.
+8. Constraints.
+9. Indexes.
+10. Query patterns.
+11. Database services and repositories.
+12. API routes.
+13. Authentication integration.
+14. Role-based permissions.
+15. Environment variables.
+16. Existing backup configuration.
+17. Existing logging and monitoring.
+18. Deployment configuration.
+
+Create an initial database health and security assessment.
+
+### Strict rules
+
+- Never reset the database.
+- Never drop existing production tables.
+- Never expose credentials.
+- Never print the full connection string.
+- Never hardcode secrets.
+- Never replace the existing database provider.
+- Never create duplicate migration systems.
+- Use JavaScript and JSX only.
+- Never create `.ts` or `.tsx` files.
+- Preserve existing application functionality.
+
+---
+
+# 2. DATABASE SECURITY HARDENING
+
+Review and improve the database security architecture.
+
+### Credential protection
+
+- Store database credentials in server-side environment variables.
+- Never expose credentials to browser code.
+- Never use `NEXT_PUBLIC_` for database secrets.
+- Remove accidentally committed secrets from active project configuration where safe.
+- Ensure `.env` files are ignored by Git.
+- Keep `.env.example` free from real credentials.
+- Avoid logging sensitive connection information.
+
+If credentials have already been exposed in Git history or publicly shared, report the exposure and recommend rotation. Removing a secret from the current file does not revoke the exposed credential.
+
+### Database access
+
+- Apply least-privilege database access.
+- Use restricted application credentials.
+- Separate migration credentials from runtime credentials when supported.
+- Restrict administrative database operations.
+- Use encrypted database connections.
+- Validate connection configuration.
+- Avoid unnecessary database permissions.
+
+Do not automatically rotate credentials without an approved process.
+
+---
+
+# 3. CONNECTION POOLING AND CONNECTION MANAGEMENT
+
+Optimize PostgreSQL connections.
+
+Inspect the existing provider and connection architecture.
+
+### Requirements
+
+- Use provider-supported pooling.
+- Avoid opening a new connection for every request.
+- Reuse the existing database client appropriately.
+- Configure sensible connection limits.
+- Handle connection timeouts.
+- Handle temporary database outages.
+- Prevent connection leaks.
+- Avoid unbounded connection creation.
+- Use compatible settings for serverless deployments.
+
+If Neon or another pooled PostgreSQL provider is configured, follow its documented pooling recommendations.
+
+Do not add a second pooling layer without a technical reason.
+
+### Validation
+
+Test:
+
+- Successful connection.
+- Connection timeout.
+- Database unavailable.
+- Recovery after temporary failure.
+- Connection pool saturation handling.
+
+Document the selected configuration and measured results.
+
+---
+
+# 4. QUERY PERFORMANCE OPTIMIZATION
+
+Audit actual database queries.
+
+Focus on:
+
+- Player listings.
+- Player details.
+- Team listings.
+- Team rosters.
+- Squad retrieval.
+- Event listings.
+- Event details.
+- News listings.
+- Article details.
+- Media gallery.
+- Admin dashboard.
+- Audit log queries.
+- User administration.
+
+### Optimize
+
+- Slow queries.
+- Missing indexes.
+- Unnecessary joins.
+- N+1 query patterns.
+- Excessive data retrieval.
+- Duplicate database requests.
+- Inefficient sorting.
+- Unnecessary count queries.
+
+### PostgreSQL tools
+
+Use appropriate tools:
+
+- EXPLAIN.
+- EXPLAIN ANALYZE.
+- EXPLAIN (BUFFERS).
+- Query statistics where supported.
+- Provider monitoring tools.
+
+Run expensive analysis only against safe development or staging data.
+
+Do not execute expensive diagnostic queries against production without assessing their impact.
+
+### Important
+
+Do not create indexes blindly.
+
+Every new index must have a documented query benefit and an understood write/storage cost.
+
+---
+
+# 5. DATABASE INDEXING REVIEW
+
+Review all existing indexes.
+
+Audit:
+
+- Primary key indexes.
+- Unique indexes.
+- Foreign key lookup indexes.
+- Search indexes.
+- Sorting indexes.
+- Composite indexes.
+- Partial indexes where justified.
+- Full-text search indexes if used.
+
+Check whether indexes support real application queries.
+
+Identify:
+
+- Missing indexes.
+- Duplicate indexes.
+- Unused indexes where usage data is available.
+- Incorrect composite index ordering.
+
+Do not delete an index based only on limited or empty usage statistics.
+
+Apply index changes through safe migrations.
+
+Document all changes.
+
+---
+
+# 6. DATA INTEGRITY AND VALIDATION
+
+Audit database consistency.
+
+### User domain
+
+- Unique usernames.
+- Valid user-role relationships.
+- Correct profile ownership.
+- Valid account status.
+
+### Player domain
+
+- Valid ratings.
+- Valid positions.
+- Valid team relationships.
+- Consistent player attributes.
+
+### Team domain
+
+- Valid team types.
+- Valid roster relationships.
+- No orphaned records.
+
+### Squad domain
+
+- Valid squad owners.
+- Maximum 11 starting players.
+- Valid formation positions.
+- No duplicate player assignments.
+- Maximum one captain.
+- Correct substitute limits.
+
+### Events domain
+
+- Valid event dates.
+- Valid event status.
+- No duplicate registrations.
+- Valid registration deadlines.
+
+### News and media domain
+
+- Unique slugs.
+- Valid author relationships.
+- Valid publication statuses.
+- Valid media references.
+- Valid category relationships.
+
+### Security domain
+
+- Valid role relationships.
+- Valid permissions.
+- Protected audit history.
+
+Create safe integrity-check scripts.
+
+Do not automatically delete suspicious records.
+
+Report anomalies and propose corrections.
+
+---
+
+# 7. BACKUP AND RECOVERY SYSTEM
+
+Design and configure the backup strategy based on the existing provider.
+
+### Backup requirements
+
+Evaluate:
+
+- Managed database backups.
+- Point-in-time recovery, if supported.
+- Scheduled backups.
+- Manual backup exports.
+- Backup retention.
+- Recovery procedures.
+
+### Recovery documentation
+
+Create a complete recovery guide covering:
+
+1. Backup creation.
+2. Backup verification.
+3. Restore preparation.
+4. Restore execution.
+5. Application reconnection.
+6. Data integrity verification.
+7. Recovery testing.
+
+### Important
+
+- Do not claim a backup exists without verification.
+- Do not overwrite production data during testing.
+- Test restoration in a separate development or staging database.
+- Document provider limitations.
+- Document the actual backup frequency and retention configuration.
+- Never store backup credentials in source code.
+
+---
+
+# 8. DATABASE MONITORING AND HEALTH
+
+Create a database monitoring foundation.
+
+Monitor available metrics such as:
+
+- Database connection status.
+- Query response time.
+- Connection pool usage.
+- Active connections.
+- Database size.
+- Table size.
+- Index size.
+- Slow queries.
+- Failed queries.
+- Migration status.
+- Database errors.
+
+Use provider monitoring where available.
+
+### Health endpoints
+
+Reuse the existing endpoint:
+
+`GET /api/health/database`
+
+Enhance it where necessary.
+
+Return safe operational information.
+
+Do not reveal:
+
+- Connection strings.
+- Credentials.
+- Sensitive schema information.
+- Private user information.
+- Internal SQL statements.
+
+Restrict detailed diagnostics to authorized administrators.
+
+Do not invent monitoring values if the provider does not expose them.
+
+---
+
+# 9. DATABASE ERROR HANDLING
+
+Improve database error handling across the backend.
+
+### Requirements
+
+- Centralized database error handling.
+- Consistent API error responses.
+- Safe error messages.
+- Server-side diagnostic logging.
+- Transaction rollback.
+- Connection failure handling.
+- Constraint violation handling.
+- Unique constraint handling.
+- Timeout handling.
+
+Never expose raw SQL errors to ordinary users.
+
+Never log passwords, tokens or complete connection strings.
+
+Ensure failed transactions do not leave partially updated records.
+
+---
+
+# 10. TRANSACTION AND CONCURRENCY SAFETY
+
+Review operations involving multiple database writes.
+
+Examples:
+
+- Creating a squad and assigning players.
+- Updating a squad formation.
+- Changing a team roster.
+- Registering a user for an event.
+- Publishing an article.
+- Changing user roles.
+- Suspending a user.
+- Recording an administrative action.
+
+Use transactions where required.
+
+### Concurrency
+
+Review:
+
+- Duplicate registrations.
+- Simultaneous squad edits.
+- Conflicting player assignments.
+- Concurrent administrative changes.
+- Race conditions.
+- Stale updates.
+
+Use appropriate database constraints and transaction isolation.
+
+Use optimistic locking or version fields where they materially improve correctness.
+
+Do not introduce complicated locking unnecessarily.
+
+---
+
+# 11. DATABASE SECURITY POLICIES
+
+If using Supabase:
+
+- Audit Row Level Security.
+- Enable RLS on tables exposed through Supabase APIs.
+- Review SELECT policies.
+- Review INSERT policies.
+- Review UPDATE policies.
+- Review DELETE policies.
+- Verify user ownership.
+- Verify role-based access.
+- Prevent unauthorized access through direct API calls.
+- Protect service-role credentials.
+
+If using Neon or standard PostgreSQL:
+
+- Enforce server-side authorization.
+- Use restricted database roles.
+- Keep database access server-side.
+- Protect administrative operations.
+- Prevent unauthorized data access through application APIs.
+
+Do not assume one provider's security model applies to another.
+
+Test authorization at the API and database layers where applicable.
+
+---
+
+# 12. MIGRATION AND SCHEMA RELIABILITY
+
+Audit migration safety.
+
+### Requirements
+
+- Versioned migrations.
+- Migration history tracking.
+- Safe schema changes.
+- Rollback instructions.
+- Migration ordering.
+- Existing data preservation.
+- Production migration review.
+- Backup before risky changes.
+
+Avoid:
+
+- Destructive table recreation.
+- Unnecessary schema redesign.
+- Dropping columns without a migration plan.
+- Renaming columns without compatibility handling.
+- Removing indexes before impact analysis.
+
+Test migrations in development or staging first.
+
+---
+
+# 13. DATABASE MAINTENANCE
+
+Prepare a database maintenance strategy.
+
+Include:
+
+- Regular integrity checks.
+- Index review.
+- Vacuum and analyze strategy where appropriate.
+- Table bloat assessment where supported.
+- Connection pool review.
+- Storage usage review.
+- Backup verification.
+- Migration review.
+- Slow query review.
+
+Use PostgreSQL-native maintenance features appropriately.
+
+Do not run manual VACUUM FULL or other disruptive maintenance operations against production without a clear need and maintenance plan.
+
+---
+
+# 14. DATABASE OPERATIONS DASHBOARD
+
+Integrate database operational information into:
+
+`/admin/security`
+
+or the existing database health section.
+
+Display available metrics:
+
+- Connection status.
+- Database availability.
+- Database size.
+- Active connections.
+- Recent database errors.
+- Slow query warnings.
+- Backup configuration status.
+- Last verified backup, if available.
+- Migration status.
+
+### Requirements
+
+- Admin-only access.
+- Real data only.
+- Safe error states.
+- Responsive layout.
+- No secret exposure.
+- Clear unavailable states.
+
+Do not build a fake monitoring dashboard.
+
+If the provider does not expose a metric, explain how it can be configured.
+
+---
+
+# 15. AUTOMATED DATABASE TESTING
+
+Improve automated database tests.
+
+Test:
+
+### Schema
+
+- Required tables exist.
+- Foreign keys are valid.
+- Constraints work.
+- Indexes exist.
+- Migrations are consistent.
+
+### Data integrity
+
+- Duplicate records rejected.
+- Invalid relationships rejected.
+- Invalid dates rejected.
+- Invalid ratings rejected.
+- Squad constraints work.
+- Registration constraints work.
+
+### Security
+
+- Unauthorized database access is rejected.
+- Unauthorized API operations fail.
+- Sensitive fields are protected.
+- Credentials are not exposed.
+
+### Reliability
+
+- Transaction rollback.
+- Connection failures.
+- Timeout handling.
+- Duplicate request handling.
+- Concurrent updates.
+
+### Backup and recovery
+
+- Backup procedure documented.
+- Restore process tested in staging if available.
+- Restored data integrity verified.
+
+Use test databases or isolated staging environments.
+
+Never run destructive tests on production.
+
+---
+
+# 16. PERFORMANCE AND LOAD TESTING
+
+Prepare realistic database workload tests.
+
+Test representative operations:
+
+- Player search.
+- Team listing.
+- Squad retrieval.
+- Event filtering.
+- News listing.
+- Media listing.
+- Admin user search.
+
+Measure:
+
+- Query duration.
+- Response time.
+- Error rate.
+- Connection usage.
+- Query count.
+
+Use realistic test data.
+
+Do not fabricate performance improvements.
+
+Compare before and after results where measurements are available.
+
+Avoid sending excessive load to production.
+
+---
+
+# 17. DATABASE ENVIRONMENT MANAGEMENT
+
+Review environment separation.
+
+Prepare:
+
+- Local development.
+- Testing.
+- Staging.
+- Production.
+
+Each environment should use its own database credentials.
+
+Requirements:
+
+- Environment-specific configuration.
+- Safe migration process.
+- No production credentials in local examples.
+- No production data in development seed scripts.
+- No accidental production writes from tests.
+- Clear deployment instructions.
+
+Document how to switch environments safely.
+
+---
+
+# 18. DOCUMENTATION UPDATE
+
+Create or update:
+
+1. `docs/DATABASE_SECURITY_HARDENING.md`
+2. `docs/DATABASE_PERFORMANCE_REPORT.md`
+3. `docs/DATABASE_CONNECTION_POOLING.md`
+4. `docs/DATABASE_BACKUP_AND_RECOVERY.md`
+5. `docs/DATABASE_MONITORING_GUIDE.md`
+6. `docs/DATABASE_INTEGRITY_AUDIT.md`
+7. `docs/DATABASE_MAINTENANCE_GUIDE.md`
+8. `docs/DATABASE_MIGRATION_OPERATIONS.md`
+9. `docs/DATABASE_LOAD_TESTING.md`
+10. `docs/PRODUCTION_DATABASE_CHECKLIST.md`
+11. `docs/DEVELOPMENT_ROADMAP.md`
+12. `docs/PROJECT_TASK_TRACKER.md`
+
+Document actual implementation status.
+
+Include provider-specific instructions.
+
+Clearly identify manual configuration requirements.
+
+---
+
+# 19. FINAL ACCEPTANCE CRITERIA
+
+- [ ] Database security audit completed.
+- [ ] Credentials protected.
+- [ ] Connection pooling reviewed.
+- [ ] Query performance audited.
+- [ ] Indexing strategy verified.
+- [ ] Data integrity checks implemented.
+- [ ] Backup strategy documented.
+- [ ] Recovery procedure documented.
+- [ ] Restore tested safely where possible.
+- [ ] Database monitoring integrated.
+- [ ] Error handling improved.
+- [ ] Transaction safety verified.
+- [ ] Concurrency risks reviewed.
+- [ ] Security policies audited.
+- [ ] Migrations reviewed.
+- [ ] Maintenance plan documented.
+- [ ] Database tests executed.
+- [ ] Performance measurements recorded.
+- [ ] Environment separation documented.
+- [ ] No production data destroyed.
+- [ ] No credentials exposed.
+
+---
+
+# 20. STRICT PHASE BOUNDARY
+
+This is Phase 20 – Database Operations and Security.
+
+The original 25-phase core roadmap continues with:
+
+**Phase 21 – Internal API Integration.**
+
+Do not automatically start Phase 21.
+
+Do not implement external third-party API integrations in this phase.
+
+Do not redesign the entire database.
+
+Do not replace the existing database provider.
+
+Do not claim production readiness without evidence.
+
+---
+
+# 21. FINAL REPORT
+
+After implementation, provide:
+
+1. Phase 20 completion status.
+2. Database security audit findings.
+3. Credential protection results.
+4. Connection pooling configuration.
+5. Query optimization changes.
+6. Index changes.
+7. Data integrity audit results.
+8. Backup configuration.
+9. Recovery test results.
+10. Monitoring implementation.
+11. Transaction and concurrency improvements.
+12. Security policy results.
+13. Migration reliability findings.
+14. Maintenance configuration.
+15. Load test results.
+16. Environment separation.
+17. Files created and modified.
+18. ESLint and test results.
+19. Production build result.
+20. Remaining risks and manual configuration.
+
+Clearly separate:
+
+- Implemented.
+- Tested.
+- Partially implemented.
+- Awaiting provider configuration.
+- Not verified.
+
